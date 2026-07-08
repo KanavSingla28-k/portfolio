@@ -4,15 +4,17 @@ import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 import { SkeletonLoader } from '../ui/SkeletonLoader';
 import { useGitHubProjects } from '../../hooks/useGitHubProjects';
+import { FadeIn } from '../ui/FadeIn';
 
 export const ProjectsGrid = () => {
   const { data: projects, isLoading, isError } = useGitHubProjects();
 
   return (
     <section id="projects" style={{ padding: '100px clamp(16px, 5vw, 48px)', maxWidth: '1200px', margin: '0 auto' }}>
-      <h2 style={{ fontFamily: 'Geist, sans-serif', fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '48px' }}>
-        Selected Projects
-      </h2>
+      <FadeIn>
+        <h2 style={{ fontFamily: 'Geist, sans-serif', fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '48px' }}>
+          Selected Projects
+        </h2>
       
       {isLoading && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px' }}>
@@ -78,6 +80,7 @@ export const ProjectsGrid = () => {
           ))}
         </div>
       )}
+      </FadeIn>
       
       <style>{`
         @media (min-width: 768px) {

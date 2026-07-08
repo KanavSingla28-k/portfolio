@@ -1,33 +1,12 @@
-import { motion, useReducedMotion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
 import { Card } from './ui/Card';
 import { profile } from '../data/profile';
+import { FadeIn } from './ui/FadeIn';
 import styles from './About.module.css';
 
 export const About = () => {
-  const shouldReduceMotion = useReducedMotion();
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
-  };
-
   return (
     <section id="about" className={styles.about}>
-      <motion.div
-        className={styles.grid}
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-      >
+      <FadeIn className={styles.grid}>
         {/* Bio text */}
         <div className={styles.content}>
           <h2 className={styles.title}>About Me</h2>
@@ -68,7 +47,7 @@ export const About = () => {
             <p style={{ color: 'var(--text-secondary)', margin: 0 }}>{profile.stats.keyMetric.label}</p>
           </Card>
         </div>
-      </motion.div>
+      </FadeIn>
     </section>
   );
 };

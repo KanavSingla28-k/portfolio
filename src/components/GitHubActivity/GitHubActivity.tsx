@@ -1,17 +1,18 @@
-// import React from 'react';
 import { Card } from '../ui/Card';
 import { SkeletonLoader } from '../ui/SkeletonLoader';
 import { useGitHubStats } from '../../hooks/useGitHubStats';
 import { Badge } from '../ui/Badge';
+import { FadeIn } from '../ui/FadeIn';
 
 export const GitHubActivity = () => {
   const { data: stats, isLoading, isError } = useGitHubStats();
 
   return (
     <section id="github" style={{ padding: '100px clamp(16px, 5vw, 48px)', maxWidth: '1200px', margin: '0 auto' }}>
-      <h2 style={{ fontFamily: 'Geist, sans-serif', fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '48px' }}>
-        GitHub Activity
-      </h2>
+      <FadeIn>
+        <h2 style={{ fontFamily: 'Geist, sans-serif', fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '48px' }}>
+          GitHub Activity
+        </h2>
 
       {isLoading && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px' }}>
@@ -57,6 +58,7 @@ export const GitHubActivity = () => {
           )}
         </div>
       )}
+      </FadeIn>
     </section>
   );
 };

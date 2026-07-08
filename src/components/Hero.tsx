@@ -14,7 +14,7 @@ export const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: shouldReduceMotion ? 0 : 0.15,
       },
     },
   };
