@@ -1,0 +1,146 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 50;
+  transition: background-color 300ms ease, border-color 300ms ease, backdrop-filter 300ms ease;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+.scrolled {
+  background-color: var(--bg-overlay);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  max-width: var(--max-width, 1200px); /* Assuming 1200px max width */
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(16px, 5vw, 48px);
+}
+
+.logo {
+  font-family: 'Geist', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+/* Desktop Links */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (max-width: 768px) {
+  .links {
+    display: none; /* Hide on mobile, handled by hamburger */
+  }
+}
+
+.link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 200ms ease;
+  position: relative;
+}
+
+.link:hover {
+  color: var(--text-primary);
+}
+
+.link.active {
+  color: var(--text-primary);
+}
+
+/* Active Underline */
+.link.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background-color: var(--accent);
+  border-radius: 2px;
+}
+
+/* Mobile Hamburger Button */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+}
+
+/* Mobile Menu Panel */
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileMenu {
+    display: block;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px clamp(16px, 5vw, 48px) 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* For Framer Motion animation */
+    overflow: hidden;
+  }
+  
+  .mobileLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* Links handle their own height/padding */
+  }
+  
+  .mobileLink {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 200ms ease;
+    border-left: 2px solid transparent;
+    padding-left: 16px;
+    margin-left: -16px; /* Offset the padding to align text */
+  }
+  
+  .mobileLink.active {
+    color: var(--text-primary);
+    border-left-color: var(--accent);
+  }
+  
+  .mobileTerminalBtn {
+    margin-top: 24px;
+    width: 100%;
+  }
+}
