@@ -3,7 +3,7 @@ import styles from './Card.module.css';
 
 type CardVariant = 'default' | 'project' | 'stat';
 
-interface CardProps {
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant;
   interactive?: boolean;
   className?: string;
@@ -15,6 +15,7 @@ export const Card = ({
   interactive = false,
   className = '',
   children,
+  ...props
 }: CardProps) => {
   const combinedClassName = [
     styles.card,
@@ -24,7 +25,7 @@ export const Card = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={combinedClassName}>
+    <div className={combinedClassName} {...props}>
       <div className={styles.cardContent}>
         {children}
       </div>

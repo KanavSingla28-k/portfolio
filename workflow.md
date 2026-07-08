@@ -483,7 +483,7 @@ main ─────────────────────────
 ```bash
 # .env.local (gitignored by default in Vite projects)
 GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-VITE_GITHUB_USERNAME=KanavSingla28
+GITHUB_USERNAME=KanavSingla28
 ```
 
 **`.env.example` (committed to repo — no secret values):**
@@ -494,7 +494,7 @@ VITE_GITHUB_USERNAME=KanavSingla28
 GITHUB_TOKEN=
 
 # Your GitHub username (used to construct API queries)
-VITE_GITHUB_USERNAME=
+GITHUB_USERNAME=
 ```
 
 **GitHub Token Scopes Required (minimum):**

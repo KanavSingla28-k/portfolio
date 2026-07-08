@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kanavsingla28-k.vercel.app/sitemap.xml
