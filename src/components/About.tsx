@@ -1,5 +1,5 @@
-import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { Card } from './ui/Card';
 import { profile } from '../data/profile';
 import styles from './About.module.css';
@@ -7,7 +7,7 @@ import styles from './About.module.css';
 export const About = () => {
   const shouldReduceMotion = useReducedMotion();
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 30 },
     visible: {
       opacity: 1,
