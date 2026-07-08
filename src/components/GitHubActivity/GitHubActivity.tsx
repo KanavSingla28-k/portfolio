@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Card } from '../ui/Card';
 import { SkeletonLoader } from '../ui/SkeletonLoader';
 import { useGitHubStats } from '../../hooks/useGitHubStats';

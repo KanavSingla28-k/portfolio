@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import type { TimelineItem } from '../../types/resume';
 import styles from './Timeline.module.css';
 

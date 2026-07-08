@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Card } from '../ui/Card';
 import { Timeline } from './Timeline';
 import { resumeData } from '../../data/resume';
