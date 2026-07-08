@@ -1,0 +1,66 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 6px; /* Small radius for tags/chips */
+  padding: 3px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* Variants */
+.availability {
+  background-color: rgba(34, 197, 94, 0.10); /* var(--success) at 10% */
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: var(--success);
+  border-radius: 9999px; /* Pill shape */
+  padding: 4px 12px;
+}
+
+.tech {
+  background-color: var(--accent-bg);
+  border: 1px solid rgba(124, 58, 237, 0.20);
+  color: var(--accent-light);
+}
+
+.category {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: normal;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: all 200ms ease;
+}
+
+.category:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+/* Pulsing Dot Animation */
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--success);
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+}
+
+.pulse {
+  animation: pulseAnimation 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulseAnimation {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,73 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 200ms ease;
+  border: 1px solid transparent;
+  outline: none;
+  text-decoration: none;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--accent-light);
+  outline-offset: 2px;
+}
+
+/* Variants */
+.primary {
+  background-color: var(--accent);
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+}
+
+.primary:hover {
+  background-color: #6d28d9; /* Slightly darker violet */
+  transform: translateY(-1px);
+}
+
+.ghost {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.10);
+  color: var(--text-primary);
+  padding: 10px 20px;
+  font-size: 0.9rem;
+}
+
+.ghost:hover {
+  border-color: rgba(255, 255, 255, 0.20);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.icon {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.10);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+}
+
+.icon:hover {
+  border-color: rgba(255, 255, 255, 0.20);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Sizes (Optional, defaults are covered above) */
+.sm {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+.md {
+  /* Default handled in variants */
+}
+
+.lg {
+  padding: 12px 24px;
+  font-size: 1rem;
+}

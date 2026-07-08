@@ -1,10 +1,19 @@
-// import React from 'react';
+import { Nav } from './components/Nav';
+import { Hero } from './components/Hero';
+import { About } from './components/About';
+import { ProjectsGrid } from './components/Projects/ProjectsGrid';
+import { Skills } from './components/Skills';
 
 function App() {
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1 style={{ fontFamily: 'Geist, sans-serif', color: 'var(--text-primary)' }}>Kanav Singla Portfolio</h1>
-      <p style={{ color: 'var(--text-secondary)' }}>Building Phase 2...</p>
+    <div style={{ backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)', minHeight: '100vh' }}>
+      <Nav />
+      <main>
+        <Hero />
+        <About />
+        <ProjectsGrid />
+        <Skills />
+      </main>
     </div>
   );
 }
