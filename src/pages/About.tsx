@@ -17,7 +17,7 @@ export default function About() {
         animate="visible"
         variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
       >
-        <motion.h1 variants={fadeUpVariants} className="font-hero-heading text-hero-heading mb-xl leading-none">
+        <motion.h1 variants={fadeUpVariants} className="font-hero-heading text-hero-heading mb-xl">
           {profile.name}
         </motion.h1>
         

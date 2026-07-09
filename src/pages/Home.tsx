@@ -2,7 +2,7 @@ import { useState, type MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { profile } from '../data/profile';
-import { resumeData } from '../data/resume';
+
 import { skills } from '../data/skills';
 import { useGitHubProjects } from '../hooks/useGitHubProjects';
 
@@ -60,7 +60,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative min-h-[1024px] flex flex-col justify-center items-center text-center px-lg overflow-hidden bg-background">
+      <section className="relative pt-20 pb-4xl flex flex-col items-center text-center px-lg overflow-hidden bg-background">
         <motion.div 
           className="max-w-4xl mx-auto space-y-xl z-10"
           initial={{ opacity: 0, y: 20 }}
@@ -74,7 +74,7 @@ export default function Home() {
               <span className="font-label-mono text-label-mono text-primary uppercase tracking-widest text-[14px]">{profile.name}</span>
             </span>
           </Link>
-          <h1 className="font-hero-heading-mobile md:font-hero-heading text-hero-heading-mobile md:text-hero-heading text-text-primary tracking-tighter">
+          <h1 className="font-hero-heading-mobile md:font-hero-heading text-hero-heading-mobile md:text-hero-heading text-text-primary">
             Precision Crafting for the <span className="text-primary italic">Modern Web</span>
           </h1>
           <p className="font-body-lg text-body-main md:text-body-lg text-text-secondary max-w-2xl mx-auto">
@@ -124,7 +124,7 @@ export default function Home() {
 
       <RevealSection id="projects">
         <div className="flex items-center justify-between mb-2xl">
-          <h2 className="font-section-heading text-section-heading text-text-primary">Selected Works</h2>
+          <h2 className="font-section-heading text-section-heading text-text-primary">Featured Works</h2>
           <span className="font-label-mono text-label-mono text-text-muted">PROJECTS / {String(1).padStart(3, '0')} — {String(topProjects.length).padStart(3, '0')}</span>
         </div>
         <div className="space-y-4xl">
@@ -164,22 +164,6 @@ export default function Home() {
         </div>
       </RevealSection>
 
-      <RevealSection id="resume">
-        <h2 className="font-section-heading text-section-heading text-text-primary mb-2xl">Professional Trajectory</h2>
-        <div className="relative border-l border-whisper ml-4 pl-8 space-y-2xl">
-          {resumeData.experience.map((exp, idx) => (
-            <div key={exp.id} className="relative">
-              <div className={`absolute -left-[41px] top-1 w-4 h-4 rounded-full border-4 ${idx === 0 ? 'bg-primary border-background' : 'bg-surface border-whisper'}`}></div>
-              <div className="space-y-sm">
-                <span className="font-label-mono text-label-mono text-text-muted uppercase">{exp.period}</span>
-                <h3 className="font-card-title text-card-title text-text-primary">{exp.title}</h3>
-                <p className="font-body-main text-body-main text-primary">{exp.organization}</p>
-                <p className="text-text-secondary max-w-2xl">{exp.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </RevealSection>
 
       <RevealSection>
         <h2 className="font-section-heading text-section-heading text-text-primary mb-2xl">Toolkit</h2>

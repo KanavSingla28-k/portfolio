@@ -52,7 +52,7 @@ export default function Projects() {
       <div className="flex flex-col gap-xl lg:gap-2xl relative">
         <div className="space-y-xl w-full">
           <div className="mb-2xl flex flex-col items-center">
-            <motion.h1 variants={fadeUpVariants} className="font-hero-heading text-center text-4xl md:text-5xl text-text-primary mb-md">
+            <motion.h1 variants={fadeUpVariants} className="font-hero-heading text-center text-hero-heading-mobile md:text-hero-heading text-text-primary mb-md">
               Projects
             </motion.h1>
           </div>
@@ -65,7 +65,7 @@ export default function Projects() {
                 <div className="flex justify-between items-start mb-lg">
                   <div>
                     <span className="font-label-mono text-label-mono text-primary block mb-xs">PROJECT / {String(idx + 1).padStart(3, '0')}</span>
-                    <h2 className="font-card-title text-card-title text-text-primary text-2xl font-bold group-hover:text-primary transition-colors">{project.name}</h2>
+                    <h2 className="font-card-title text-card-title text-text-primary group-hover:text-primary transition-colors">{project.name}</h2>
                   </div>
                   <span className="font-label-mono text-label-mono text-text-muted">{project.stars} ★</span>
                 </div>

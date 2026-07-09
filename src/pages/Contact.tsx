@@ -81,7 +81,7 @@ export default function Contact() {
             {profile.availability ? 'Available for hire' : 'Unavailable for hire'}
           </span>
         </div>
-        <h1 className="font-section-heading text-section-heading md:text-hero-heading md:font-hero-heading tracking-tight mb-sm text-text-primary">Contact</h1>
+        <h1 className="font-section-heading text-section-heading md:text-hero-heading md:font-hero-heading mb-sm text-text-primary">Contact</h1>
         <p className="text-text-secondary font-body-main text-body-main max-w-[600px]">
           I’m currently open to new opportunities and collaborations. Reach out via any of the platforms below.
         </p>
