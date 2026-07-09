@@ -3,14 +3,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { profile } from '../../data/profile';
 
 export default function Header() {
-  const initials = profile.name.split(' ').map((n) => n[0]).join('');
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md border-b border-whisper bg-overlay">
       <nav className="max-w-max-width mx-auto flex items-center px-lg py-md">
         <div className="flex-1 flex justify-start">
-          <Link className="font-hero-heading text-card-title font-bold text-primary" to="/">
-            {initials}
+          <Link className="flex items-center" to="/">
+            <img src="/icon.png" alt="Logo" className="w-8 h-auto" />
           </Link>
         </div>
         <div className="hidden md:flex items-center justify-center gap-xl">
