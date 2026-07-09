@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { GraphQLClient, gql } from 'graphql-request';
-import { projects as manualProjects } from '../../src/data/projects';
+import { manualProjects } from './manualProjects.js';
 import type { EnrichedProject } from '../../src/types/project';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 

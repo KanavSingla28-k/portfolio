@@ -16,7 +16,7 @@ export const profile = {
   },
   stats: {
     yearsOfCoding: 3,
-    projectsBuilt: 10,
+    projectsBuilt: 6,
     technologiesUsed: 20,
     keyMetric: { label: "Late nights converted", value: "∞" },
   },
