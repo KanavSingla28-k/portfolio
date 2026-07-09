@@ -21,3 +21,14 @@ export const profile = {
     keyMetric: { label: "Late nights converted", value: "∞" },
   },
 } as const;
+
+// Tech stack displayed in the footer "Built with" line.
+// Kept here (not in Footer.tsx) so it's content, not component logic.
+export const footerTech = [
+  "React",
+  "TypeScript",
+  "Vite",
+  "Framer Motion",
+  "Vercel",
+] as const;
+
