@@ -1,25 +1,62 @@
-import type { ManualProjectMetadata } from '../types/project';
+import type { Project } from '../types/project';
 
-// This file ONLY contains manual overrides and curation.
-// Live metadata (stars, description, topics, etc.) is fetched via GraphQL.
-
-export const projects: ManualProjectMetadata[] = [
+export const projects: Project[] = [
   {
-    repo: "KanavSingla28-k/PDFTalk",
+    id: "pdftalk",
+    name: "PDFTalk",
+    description: "A production-grade SaaS for intelligent document interaction. Upload, chat, and extract insights from your PDFs using RAG and advanced OCR.",
+    techStack: ["FastAPI", "PostgreSQL", "pgvector", "Redis", "RQ", "OpenAI", "Next.js 16", "TypeScript", "AWS S3", "Docker"],
+    githubUrl: "https://github.com/KanavSingla28-k/PDFTalk",
+    demoUrl: "https://pdftalk.kanavsingla.fyi/",
+    image: "/project-img/pdftalk/pdftalk.png",
+    images: [
+      "/project-img/pdftalk/pdftalk.png",
+      "/project-img/pdftalk/pdftalk-1.png",
+      "/project-img/pdftalk/pdftalk-2.png",
+      "/project-img/pdftalk/pdftalk-3.png",
+      "/project-img/pdftalk/pdftalk-4.png"
+    ],
     featured: true,
     order: 1,
-    descriptionOverride: "AI-powered PDF Q&A using RAG, LangChain, and OpenAI. Process documents and chat with their content seamlessly.", // Overrides GitHub if needed
   },
   {
-    repo: "DushyantBhardwaj2/resumeDatabase",
-    featured: false,
+    id: "Resumint",
+    name: "Resumint",
+    description: "Architected a modular backend using domain, application, and infrastructure layers with dependency injection, enabling LLM providers to be replaced without modifying logic.",
+    techStack: ["Next.js 16", "TypeScript", "Hono", "Prisma", "PostgreSQL", "BullMQ", "Redis", "DeepSeek LLM", "Better-Auth", "Zustand", "Render", "Vercel"],
+    githubUrl: "https://github.com/DushyantBhardwaj2/resumeDatabase",
+    demoUrl: "https://resume-database.vercel.app/",
+    image: "/project-img/resumint/resumint.png",
+    images: [
+      "/project-img/resumint/resumint.png",
+      "/project-img/resumint/resumint-1.png",
+      "/project-img/resumint/resumint-2.png",
+      "/project-img/resumint/resumint-3.jpeg",
+      "/project-img/resumint/resumint-4.jpeg"
+    ],
+    featured: true,
     order: 2,
-    contribution: {
-      role: "Backend Engineer",
-      highlights: [
-        "Architected scalable backend systems.",
-      ],
-      prLinks: [],
-    },
   },
+  {
+    id: "Fuzzy-Monotonic-LightGBM-for-Explainable-Credit-Default-Prediction",
+    name: "Fuzzy Monotonic LightGBM for Explainable Credit Default Prediction",
+    description: "Hybrid fuzzy-monotonic LightGBM framework for transparent, regulator-friendly credit default prediction. Combines linguistic fuzzy rules, economic monotonic constraints, and boosted models to deliver calibrated, explainable, high-performance credit-risk scoring.",
+    techStack: ["Python", "LightGBM", "XGBoost", "Scikit-Learn", "Pandas", "NumPy"],
+    githubUrl: "https://github.com/UtkarshDubeyGIT/Fuzzy-Monotonic-LightGBM-for-Explainable-Credit-Default-Prediction",
+    demoUrl: "",
+    image: "/project-img/fuzzy.png",
+    featured: true,
+    order: 3,
+  },
+  {
+    id: "FSRO-Optimization-Algorithm",
+    name: "FSRO Optimization Algorithm",
+    description: "This project implements and modifies the FSRO (Frog Snake Prey Predation) Optimization Algorithm. The FSRO algorithm is inspired by the natural predation behaviors of frogs and snakes, and it is used to solve optimization problems effectively.",
+    techStack: ["Python", "Scikit-Learn", "Pandas", "NumPy", "Matplotlib"],
+    githubUrl: "https://github.com/SavageCat05/AI-project-",
+    demoUrl: "",
+    image: "/project-img/fsro.png",
+    featured: true,
+    order: 4,
+  }
 ];

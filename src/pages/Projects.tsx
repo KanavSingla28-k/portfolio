@@ -1,7 +1,8 @@
 import { useState, type MouseEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Rocket, Code } from 'lucide-react';
-import { useGitHubProjects } from '../hooks/useGitHubProjects';
+import { projects } from '../data/projects';
+import ProjectImageCarousel from '../components/ProjectImageCarousel';
 
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 32 },
@@ -38,8 +39,6 @@ function HoverProjectCard({ children, className = '' }: { children: React.ReactN
 }
 
 export default function Projects() {
-  const { data: projectsData, isLoading } = useGitHubProjects();
-
   return (
     <motion.div 
       className="max-w-max-width mx-auto px-lg pt-16 pb-4xl"
@@ -57,24 +56,19 @@ export default function Projects() {
             </motion.h1>
           </div>
 
-          {isLoading ? (
-            <div className="text-center text-text-muted">Loading projects...</div>
-          ) : (
-            projectsData?.map((project, idx) => (
-              <HoverProjectCard key={project.repo}>
+          {projects.map((project, idx) => (
+              <HoverProjectCard key={project.id}>
                 <div className="flex justify-between items-start mb-lg">
                   <div>
                     <span className="font-label-mono text-label-mono text-primary block mb-xs">PROJECT / {String(idx + 1).padStart(3, '0')}</span>
                     <h2 className="font-card-title text-card-title text-text-primary group-hover:text-primary transition-colors">{project.name}</h2>
                   </div>
-                  <span className="font-label-mono text-label-mono text-text-muted">{project.stars} ★</span>
                 </div>
                 
-                <div className="aspect-video w-full bg-surface-container-low rounded-lg mb-lg border border-whisper overflow-hidden relative">
-                  <img 
-                    alt={project.name} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
-                    src={project.image || `https://via.placeholder.com/1200x675/111113/7c3aed?text=${project.name}`} 
+                <div className="w-full mb-lg">
+                  <ProjectImageCarousel 
+                    images={project.images || (project.image ? [project.image] : [])} 
+                    projectName={project.name} 
                   />
                 </div>
                 
@@ -83,7 +77,7 @@ export default function Projects() {
                 </p>
                 
                 <div className="flex flex-wrap gap-xs mb-xl">
-                  {project.topics.map(topic => (
+                  {project.techStack.map(topic => (
                     <span key={topic} className="bg-accent-bg px-sm py-xs rounded font-label-mono text-label-mono text-secondary uppercase">
                       {topic}
                     </span>
@@ -97,14 +91,15 @@ export default function Projects() {
                       LIVE DEMO
                     </a>
                   )}
-                  <a className="px-lg py-2 border border-whisper text-text-secondary font-label-mono text-label-mono rounded-lg hover:border-hover hover:text-text-primary transition-all flex items-center gap-xs" href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                    <Code className="w-4 h-4" strokeWidth={1.5} />
-                    SOURCE
-                  </a>
+                  {project.githubUrl && project.githubUrl !== '#' && (
+                    <a className="px-lg py-2 border border-whisper text-text-secondary font-label-mono text-label-mono rounded-lg hover:border-hover hover:text-text-primary transition-all flex items-center gap-xs" href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                      <Code className="w-4 h-4" strokeWidth={1.5} />
+                      SOURCE
+                    </a>
+                  )}
                 </div>
               </HoverProjectCard>
-            ))
-          )}
+            ))}
         </div>
       </div>
     </motion.div>

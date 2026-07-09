@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 import { profile } from '../data/profile';
 
 import { skills } from '../data/skills';
-import { useGitHubProjects } from '../hooks/useGitHubProjects';
+import { projects } from '../data/projects';
+import { resumeData } from '../data/resume';
+import ProjectImageCarousel from '../components/ProjectImageCarousel';
 
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 32 },
@@ -55,8 +57,7 @@ function HoverCard({ children, className = '' }: { children: React.ReactNode, cl
 }
 
 export default function Home() {
-  const { data: projectsData, isLoading } = useGitHubProjects();
-  const topProjects = projectsData?.slice(0, 3) || [];
+  const topProjects = projects.filter(p => p.featured).slice(0, 4);
 
   return (
     <>
@@ -70,21 +71,21 @@ export default function Home() {
           <Link className="relative inline-flex overflow-hidden rounded-full p-[1px] mb-md group/badge hover:-translate-y-0.5 transition-transform" to="/projects">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#7c3aed_100%)]"></span>
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background relative w-full h-full">
-              <span className={`w-2 h-2 rounded-full ${profile.availability ? 'bg-success animate-pulse' : 'bg-text-muted'}`}></span>
+              <span className={`w-3 h-3 rounded-full ${profile.availability ? 'bg-success animate-pulse' : 'bg-text-muted'}`}></span>
               <span className="font-label-mono text-label-mono text-primary uppercase tracking-widest text-[14px]">{profile.name}</span>
             </span>
           </Link>
           <h1 className="font-hero-heading-mobile md:font-hero-heading text-hero-heading-mobile md:text-hero-heading text-text-primary">
-            Precision Crafting for the <span className="text-primary italic">Modern Web</span>
+            Converting bugs into features <span className="text-primary italic">since 2023</span>
           </h1>
           <p className="font-body-lg text-body-main md:text-body-lg text-text-secondary max-w-2xl mx-auto">
             {profile.bio[0]}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-md pt-md">
-            <Link className="w-full sm:w-auto px-xl py-4 border border-whisper bg-bg-surface rounded-[14px] font-medium hover:border-hover hover:bg-bg-elevated transition-all flex items-center justify-center gap-2 text-text-primary" to="/about">
+            <Link className="w-full sm:w-auto px-xl py-4 border border-whisper bg-bg-surface rounded-3xl font-medium hover:border-hover hover:bg-bg-elevated transition-all flex items-center justify-center gap-2 text-text-primary" to="/about">
               About - {profile.name}
             </Link>
-            <a className="w-full sm:w-auto px-xl py-4 border border-whisper bg-bg-surface rounded-[14px] font-medium hover:border-hover hover:bg-bg-elevated transition-all flex items-center justify-center gap-2 text-text-primary" href={profile.links.resume} target="_blank" rel="noopener noreferrer">
+            <a className="w-full sm:w-auto px-xl py-4 border border-whisper bg-bg-surface rounded-3xl font-medium hover:border-hover hover:bg-bg-elevated transition-all flex items-center justify-center gap-2 text-text-primary" href={profile.links.resume} target="_blank" rel="noopener noreferrer">
               Resume
             </a>
           </div>
@@ -128,17 +129,13 @@ export default function Home() {
           <span className="font-label-mono text-label-mono text-text-muted">PROJECTS / {String(1).padStart(3, '0')} — {String(topProjects.length).padStart(3, '0')}</span>
         </div>
         <div className="space-y-4xl">
-          {isLoading ? (
-            <div className="text-text-muted">Loading projects...</div>
-          ) : (
-            topProjects.map((project, idx) => (
-              <HoverCard key={project.repo} className="bg-bg-surface rounded-[14px] hover:-translate-y-1 transition-all duration-400">
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="block">
-                  <div className="aspect-video w-full bg-surface-container overflow-hidden">
-                    <img 
-                      alt={project.name} 
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
-                      src={project.image || `https://via.placeholder.com/800x450/111113/7c3aed?text=${project.name}`} 
+          {topProjects.map((project, idx) => (
+              <HoverCard key={project.id} className="bg-bg-surface rounded-[14px] hover:-translate-y-1 transition-all duration-400">
+                <a href={project.githubUrl || project.demoUrl || '#'} target="_blank" rel="noopener noreferrer" className="block">
+                  <div className="w-full">
+                    <ProjectImageCarousel 
+                      images={project.images || (project.image ? [project.image] : [])} 
+                      projectName={project.name} 
                     />
                   </div>
                   <div className="p-xl lg:flex items-start gap-2xl">
@@ -149,7 +146,7 @@ export default function Home() {
                       <h3 className="font-card-title text-card-title text-text-primary group-hover:text-primary transition-colors">{project.name}</h3>
                       <p className="font-body-main text-body-main text-text-secondary">{project.description}</p>
                       <div className="flex flex-wrap gap-xs">
-                        {project.topics.slice(0, 4).map(topic => (
+                        {project.techStack.slice(0, 4).map(topic => (
                           <span key={topic} className="px-3 py-1 bg-accent-bg border border-[rgba(124,58,237,0.1)] rounded-md font-label-mono text-label-mono text-primary uppercase">
                             {topic}
                           </span>
@@ -159,12 +156,36 @@ export default function Home() {
                   </div>
                 </a>
               </HoverCard>
-            ))
-          )}
+            ))}
         </div>
       </RevealSection>
 
-
+      <RevealSection id="resume">
+        <h2 className="font-section-heading text-section-heading text-text-primary mb-2xl">Professional Trajectory</h2>
+        <div className="relative border-l border-whisper ml-4 pl-8 space-y-2xl">
+          {resumeData.experience.map((exp, idx) => (
+            <div key={exp.id} className="relative">
+              <div className={`absolute -left-[41px] top-1 w-4 h-4 rounded-full border-4 ${idx === 0 ? 'bg-primary border-background' : 'bg-bg-surface border-whisper'}`}></div>
+              <div className="space-y-sm">
+                <span className="font-label-mono text-label-mono text-text-muted uppercase">{exp.period}</span>
+                <h3 className="font-card-title text-card-title text-text-primary">{exp.title}</h3>
+                <p className="font-body-main text-body-main text-primary">{exp.organization}</p>
+                <p className="text-text-secondary max-w-2xl">{exp.description}</p>
+              </div>
+            </div>
+          ))}
+          {resumeData.education.map((edu, idx) => (
+            <div key={edu.id} className="relative">
+              <div className={`absolute -left-[41px] top-1 w-4 h-4 rounded-full border-4 ${resumeData.experience.length === 0 && idx === 0 ? 'bg-primary border-background' : 'bg-bg-surface border-whisper'}`}></div>
+              <div className="space-y-sm">
+                <span className="font-label-mono text-label-mono text-text-muted uppercase">{edu.period}</span>
+                <h3 className="font-card-title text-card-title text-text-primary">{edu.title}</h3>
+                <p className="font-body-main text-body-main text-primary">{edu.organization}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </RevealSection>
       <RevealSection>
         <h2 className="font-section-heading text-section-heading text-text-primary mb-2xl">Toolkit</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-xl">
