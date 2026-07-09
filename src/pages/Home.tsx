@@ -131,7 +131,7 @@ export default function Home() {
         <div className="space-y-4xl">
           {topProjects.map((project, idx) => (
               <HoverCard key={project.id} className="bg-bg-surface rounded-[14px] hover:-translate-y-1 transition-all duration-400">
-                <a href={project.githubUrl || project.demoUrl || '#'} target="_blank" rel="noopener noreferrer" className="block">
+                <Link to="/projects" className="block">
                   <div className="w-full">
                     <ProjectImageCarousel 
                       images={project.images || (project.image ? [project.image] : [])} 
@@ -154,9 +154,36 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </a>
+                </Link>
               </HoverCard>
             ))}
+        </div>
+      </RevealSection>
+
+      <RevealSection id="activity">
+        <div className="flex items-center justify-between mb-2xl">
+          <h2 className="font-section-heading text-section-heading text-text-primary">Recent Activity</h2>
+          <span className="font-label-mono text-label-mono text-text-muted">ACTIVITY / GITHUB</span>
+        </div>
+        <div className="space-y-md">
+          {[
+            { id: 1, type: 'Push', repo: 'portfolio', message: 'Update contact form and homepage routing', date: 'Just now' },
+            { id: 2, type: 'Merge', repo: 'PDFTalk', message: 'Merge pull request #42 from feature/ui-refresh', date: '2 days ago' },
+            { id: 3, type: 'Issue', repo: 'Resumint', message: 'Closed issue #15: Fix PDF generation bug', date: '1 week ago' }
+          ].map((activity) => (
+            <div key={activity.id} className="p-lg bg-bg-surface border border-whisper rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:border-border-hover transition-colors">
+              <div className="flex items-center gap-md">
+                <div className="p-3 bg-accent-bg rounded-lg text-primary">
+                  {activity.type === 'Push' ? <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg> : activity.type === 'Merge' ? <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" /></svg> : <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>}
+                </div>
+                <div>
+                  <h3 className="font-medium text-text-primary group-hover:text-primary transition-colors">{activity.repo}</h3>
+                  <p className="text-sm text-text-secondary">{activity.message}</p>
+                </div>
+              </div>
+              <span className="font-label-mono text-xs text-text-muted">{activity.date}</span>
+            </div>
+          ))}
         </div>
       </RevealSection>
 

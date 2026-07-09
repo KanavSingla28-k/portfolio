@@ -4,6 +4,8 @@ import { FiMail as Mail, FiLinkedin as Linkedin, FiGithub as Github, FiMapPin as
 import { contactMethods } from '../data/contact';
 import { profile } from '../data/profile';
 
+type FormStatus = 'idle' | 'loading' | 'success' | 'error';
+
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 32 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
@@ -59,6 +61,25 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function Contact() {
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+    
+    setStatus('loading');
+    setTimeout(() => {
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    }, 1500);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setStatus('idle');
+  };
+
   return (
     <motion.main 
       className="pt-[120px] pb-4xl px-lg max-w-max-width mx-auto min-h-screen"
@@ -87,29 +108,113 @@ export default function Contact() {
         </p>
       </motion.div>
 
-      {/* Contact Grid */}
-      <motion.div variants={fadeUpVariants} className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-lg">
-        {contactMethods.map((method) => (
-          <HoverContactCard 
-            key={method.name}
-            href={method.url || undefined}
-            target={method.url && !method.url.startsWith('mailto:') ? '_blank' : undefined}
-          >
-            <div className="flex justify-between items-start">
-              <div className="p-md rounded-lg bg-accent-bg border border-border-whisper text-primary">
-                {iconMap[method.name]}
+      {/* Contact Content Area */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2xl">
+        {/* Contact Grid */}
+        <motion.div variants={fadeUpVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-lg h-fit">
+          {contactMethods.map((method) => (
+            <HoverContactCard 
+              key={method.name}
+              href={method.url || undefined}
+              target={method.url && !method.url.startsWith('mailto:') ? '_blank' : undefined}
+            >
+              <div className="flex justify-between items-start">
+                <div className="p-md rounded-lg bg-accent-bg border border-border-whisper text-primary">
+                  {iconMap[method.name]}
+                </div>
+                {method.url && (
+                  <ArrowUpRight className="text-text-muted group-hover:text-primary transition-colors duration-250 transform group-hover:translate-x-1 group-hover:-translate-y-1 w-6 h-6" strokeWidth={1.5} />
+                )}
               </div>
-              {method.url && (
-                <ArrowUpRight className="text-text-muted group-hover:text-primary transition-colors duration-250 transform group-hover:translate-x-1 group-hover:-translate-y-1 w-6 h-6" strokeWidth={1.5} />
-              )}
+              <div>
+                <h3 className="font-card-title text-card-title text-text-primary mb-xs">{method.name}</h3>
+                <p className="font-label-mono text-label-mono text-text-secondary">{method.value}</p>
+              </div>
+            </HoverContactCard>
+          ))}
+        </motion.div>
+
+        {/* Contact Form */}
+        <motion.div variants={fadeUpVariants} className="p-xl rounded-xl bg-bg-surface whisper-border relative h-fit">
+          {status === 'success' ? (
+            <div className="flex flex-col items-center justify-center text-center h-full py-2xl space-y-md">
+              <div className="w-16 h-16 rounded-full bg-success/20 flex items-center justify-center text-success mb-2">
+                <Mail className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-bold text-text-primary">Message Sent!</h3>
+              <p className="text-text-secondary">Thanks for reaching out. I'll get back to you shortly.</p>
+              <button 
+                onClick={() => setStatus('idle')}
+                className="mt-4 px-6 py-2 bg-bg-elevated hover:bg-hover border border-whisper rounded-full text-text-primary transition-colors"
+              >
+                Send another
+              </button>
             </div>
-            <div>
-              <h3 className="font-card-title text-card-title text-text-primary mb-xs">{method.name}</h3>
-              <p className="font-label-mono text-label-mono text-text-secondary">{method.value}</p>
-            </div>
-          </HoverContactCard>
-        ))}
-      </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-lg">
+              <div>
+                <h3 className="text-xl font-bold text-text-primary mb-2">Send a message</h3>
+                <p className="text-text-secondary text-sm mb-6">Fill out the form below and I'll respond as soon as I can.</p>
+              </div>
+              
+              <div className="space-y-1">
+                <label htmlFor="name" className="text-sm font-medium text-text-primary">Name <span className="text-primary">*</span></label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full bg-background border border-whisper rounded-lg px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors"
+                  placeholder="John Doe"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label htmlFor="email" className="text-sm font-medium text-text-primary">Email <span className="text-primary">*</span></label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required
+                  pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full bg-background border border-whisper rounded-lg px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors"
+                  placeholder="john@example.com"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label htmlFor="message" className="text-sm font-medium text-text-primary">Message <span className="text-primary">*</span></label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  required
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full bg-background border border-whisper rounded-lg px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors resize-none"
+                  placeholder="Your message here..."
+                />
+              </div>
+
+              <button 
+                type="submit" 
+                disabled={status === 'loading'}
+                className="w-full bg-primary hover:bg-primary-hover disabled:opacity-70 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                {status === 'loading' ? (
+                  <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                ) : (
+                  'Send Message'
+                )}
+              </button>
+            </form>
+          )}
+        </motion.div>
+      </div>
     </motion.main>
   );
 }
