@@ -1,38 +1,80 @@
-import { Button } from '../components/ui/Button';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import { useState, type MouseEvent } from 'react';
 
-export const NotFound = () => {
-  return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '24px',
-      backgroundColor: 'var(--bg-base)',
-      textAlign: 'center'
-    }}>
-      <h1 style={{ 
-        fontFamily: 'Geist, sans-serif', 
-        fontSize: 'clamp(4rem, 10vw, 8rem)', 
-        color: 'var(--text-primary)', 
-        margin: '0 0 16px 0',
-        lineHeight: 1
-      }}>
-        404
-      </h1>
-      <p style={{ 
-        fontSize: '1.25rem', 
-        color: 'var(--text-secondary)', 
-        marginBottom: '32px' 
-      }}>
-        Page not found.
-      </p>
-      
-      {/* We use standard anchor here since we're using React Router's BrowserRouter but for a simple SPA we might just want to href="/" */}
-      <Button variant="primary" href="/">
-        Return Home
-      </Button>
-    </div>
-  );
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
 };
+
+export default function NotFound() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  
+  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  return (
+    <>
+      <div className="fixed top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none z-[100]"></div>
+      <motion.div 
+        className="flex-1 flex flex-col items-center justify-center relative px-lg overflow-hidden py-xl" 
+        onMouseMove={handleMouseMove}
+        style={{
+          '--mouse-x': `${mousePos.x}px`,
+          '--mouse-y': `${mousePos.y}px`,
+        } as React.CSSProperties}
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: { transition: { staggerChildren: 0.1 } }
+        }}
+      >
+        {/* Atmospheric Background Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-container/5 rounded-full blur-[120px]"></div>
+        </div>
+
+        {/* 404 Layout */}
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-xl md:gap-4xl w-full px-4">
+          {/* Large Numeral (Placeholder Image) */}
+          <motion.div variants={fadeUpVariants} className="flex-shrink-0">
+            <img 
+              src="/image404.png" 
+              alt="404 Not Found" 
+              className="w-full max-w-[320px] md:max-w-[400px] rounded-xl"
+            />
+          </motion.div>
+
+          {/* Content Text and Button */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-md">
+            <motion.div variants={fadeUpVariants} className="space-y-md">
+              <p className="font-body-lg text-body-lg text-text-primary tracking-tight">
+                This page doesn't exist.
+              </p>
+              <p className="font-body-main text-body-main text-text-muted px-md md:px-0">
+                The technical specifications for this coordinate seem to be missing or were never written into the architecture.
+              </p>
+            </motion.div>
+
+            {/* Primary Action */}
+            <motion.div variants={fadeUpVariants} className="mt-xl md:mt-2xl">
+              <Link 
+                className="inline-flex items-center gap-sm px-xl py-md bg-primary-container text-text-primary font-body-main font-medium rounded-lg transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:translate-y-[-2px] active:scale-95" 
+                to="/"
+              >
+                Back to home
+                <ArrowRight className="w-[18px] h-[18px]" strokeWidth={1.5} />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    </>
+  );
+}

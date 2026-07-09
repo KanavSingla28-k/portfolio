@@ -1,6 +1,6 @@
 export const profile = {
   name: "Kanav Singla",
-  handle: "KanavSingla28",
+  handle: "KanavSingla28-k",
   tagline: "Converting logic into late nights.",
   bio: [
     "I enjoy breaking complex problems into simple, efficient, and scalable solutions while writing clean, maintainable code built for real-world use.",
@@ -21,3 +21,4 @@ export const profile = {
     keyMetric: { label: "Late nights converted", value: "∞" },
   },
 } as const;
+

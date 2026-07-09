@@ -1,0 +1,588 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Kanav Singla — Obsidian Precision Portfolio</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/geist-font@1.1.0/dist/fonts.css" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "bg-elevated": "#1a1a1d",
+                    "border-hover": "rgba(255, 255, 255, 0.12)",
+                    "on-background": "#e5e1e4",
+                    "primary-container": "#7c3aed",
+                    "primary-fixed": "#eaddff",
+                    "inverse-on-surface": "#313032",
+                    "on-primary-fixed-variant": "#5a00c6",
+                    "bg-overlay": "rgba(9, 9, 11, 0.85)",
+                    "tertiary-container": "#a15100",
+                    "tertiary-fixed-dim": "#ffb784",
+                    "primary": "#d2bbff",
+                    "surface-container": "#201f22",
+                    "surface-container-high": "#2a2a2c",
+                    "text-secondary": "#a1a1aa",
+                    "border-whisper": "rgba(255, 255, 255, 0.06)",
+                    "accent-glow": "rgba(124, 58, 237, 0.20)",
+                    "background": "#09090b",
+                    "secondary-fixed-dim": "#cebdff",
+                    "danger": "#ef4444",
+                    "on-tertiary-fixed-variant": "#713700",
+                    "tertiary": "#ffb784",
+                    "surface-container-highest": "#353437",
+                    "inverse-primary": "#732ee4",
+                    "on-tertiary-container": "#ffe0cd",
+                    "error-container": "#93000a",
+                    "surface": "#131315",
+                    "bg-surface": "#111113",
+                    "on-secondary-fixed-variant": "#4f319c",
+                    "secondary": "#cebdff",
+                    "secondary-container": "#4f319c",
+                    "on-surface-variant": "#ccc3d8",
+                    "error": "#ffb4ab",
+                    "on-secondary": "#381385",
+                    "inverse-surface": "#e5e1e4",
+                    "on-error-container": "#ffdad6",
+                    "surface-dim": "#131315",
+                    "on-primary-fixed": "#25005a",
+                    "on-secondary-container": "#bea8ff",
+                    "on-primary-container": "#ede0ff",
+                    "on-tertiary-fixed": "#301400",
+                    "on-primary": "#3f008e",
+                    "outline": "#958da1",
+                    "surface-variant": "#353437",
+                    "outline-variant": "#4a4455",
+                    "on-error": "#690005",
+                    "on-secondary-fixed": "#21005e",
+                    "surface-tint": "#d2bbff",
+                    "on-tertiary": "#4f2500",
+                    "accent-bg": "rgba(124, 58, 237, 0.08)",
+                    "surface-bright": "#39393b",
+                    "tertiary-fixed": "#ffdcc6",
+                    "text-muted": "#7d7d87",
+                    "text-primary": "#fafafa",
+                    "success": "#22c55e",
+                    "on-surface": "#e5e1e4",
+                    "surface-container-lowest": "#0e0e10",
+                    "surface-container-low": "#1c1b1d",
+                    "secondary-fixed": "#e8ddff",
+                    "primary-fixed-dim": "#d2bbff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "md": "16px",
+                    "grid-base": "4px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "max-width": "1200px",
+                    "2xl": "48px",
+                    "3xl": "64px",
+                    "4xl": "96px"
+            },
+            "fontFamily": {
+                    "card-title": ["Geist", "sans-serif"],
+                    "label-mono": ["Geist Mono", "monospace"],
+                    "hero-heading": ["Geist", "sans-serif"],
+                    "hero-heading-mobile": ["Geist", "sans-serif"],
+                    "stat-display": ["Geist", "sans-serif"],
+                    "body-lg": ["Inter", "sans-serif"],
+                    "body-main": ["Inter", "sans-serif"],
+                    "section-heading": ["Geist", "sans-serif"]
+            },
+            "fontSize": {
+                    "card-title": ["18px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "label-mono": ["11.5px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                    "hero-heading": ["80px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "hero-heading-mobile": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                    "stat-display": ["48px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-lg": ["24px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-main": ["16px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                    "section-heading": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        :root {
+            --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --motion-normal: 250ms;
+            --motion-slow: 400ms;
+        }
+        body {
+            background-color: #09090b;
+            color: #fafafa;
+            scroll-behavior: smooth;
+        }
+        .whisper-border {
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: border-color var(--motion-normal) var(--motion-ease), transform var(--motion-normal) var(--motion-ease);
+        }
+        .whisper-border:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+        .accent-glow-card:hover {
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(124, 58, 237, 0.08), transparent 40%);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .radial-blob {
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+            filter: blur(80px);
+        }
+        .tech-badge {
+            background: rgba(124, 58, 237, 0.08);
+            border: 1px solid rgba(124, 58, 237, 0.1);
+        }
+
+        /* Scroll Reveal Base */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(2rem);
+            transition: opacity var(--motion-slow) var(--motion-ease), transform var(--motion-slow) var(--motion-ease);
+        }
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Animation delay */
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-hero-content {
+            opacity: 0;
+            animation: fade-in-up var(--motion-slow) var(--motion-ease) forwards;
+            animation-delay: 0.6s;
+        }
+
+        webgl-shader {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+<style>
+@keyframes tech-scan {
+  0%, 80%, 100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+  85% {
+    box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.4), 0 0 4px 1px rgba(124, 58, 237, 0.2);
+  }
+  90% {
+    box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.6), 0 0 8px 2px rgba(124, 58, 237, 0.3);
+  }
+  95% {
+    box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.4), 0 0 4px 1px rgba(124, 58, 237, 0.2);
+  }
+}
+</style></head>
+<body class="font-body-main antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md border-b border-whisper bg-overlay">
+<nav class="max-w-max-width mx-auto flex justify-between items-center px-lg py-md">
+<a class="font-hero-heading text-card-title font-bold text-primary" href="#">KS</a>
+<div class="hidden md:flex items-center gap-xl">
+<a class="font-body-main text-body-main text-text-secondary hover:text-text-primary transition-colors duration-150 rounded-full" href="#about" style="border-color: rgba(255, 255, 255, 0.1);">About</a>
+<a class="font-body-main text-body-main text-text-secondary hover:text-text-primary transition-colors duration-150" href="#projects">Projects</a>
+<a class="font-body-main text-body-main text-text-secondary hover:text-text-primary transition-colors duration-150" href="#resume">Resume</a>
+<a class="font-body-main text-body-main text-text-secondary hover:text-text-primary transition-colors duration-150" href="#contact">Contact</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-lg whisper-border hover:bg-accent-bg transition-all duration-250" style="--mouse-x: 38.5999755859375px; --mouse-y: 14px;">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 0;">terminal</span>
+</button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[1024px] flex flex-col justify-center items-center text-center px-lg overflow-hidden bg-background">
+<div class="max-w-4xl mx-auto space-y-xl z-10 animate-hero-content"><a class="relative inline-flex overflow-hidden rounded-full p-[1px] mb-md group/badge hover:-translate-y-0.5 transition-transform" href="#projects">
+<span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#7c3aed_100%)]"></span>
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background relative w-full h-full">
+<span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+<span class="font-label-mono text-label-mono text-primary uppercase tracking-widest" style="font-size: 14px;">Kanav Singla</span>
+</span>
+</a>
+<h1 class="font-hero-heading-mobile md:font-hero-heading text-hero-heading-mobile md:text-hero-heading text-text-primary tracking-tighter">
+                    Precision Crafting for the <span class="text-primary italic">Modern Web</span>
+</h1>
+<p class="font-body-lg text-body-main md:text-body-lg text-text-secondary max-w-2xl mx-auto">
+                    Full-stack architect specializing in high-performance digital ecosystems. Merging obsessive detail with architectural rigor.
+                </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-md pt-md">
+<a class="w-full sm:w-auto px-xl py-4 border border-whisper bg-bg-surface rounded-[14px] font-medium hover:border-hover hover:bg-bg-elevated transition-all flex items-center justify-center gap-2 text-text-primary" href="#about">About - Kanav Singla
+</a>
+<a class="w-full sm:w-auto px-xl py-4 border border-whisper bg-bg-surface rounded-[14px] font-medium hover:border-hover hover:bg-bg-elevated transition-all flex items-center justify-center gap-2" href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-4xl max-w-max-width mx-auto px-lg reveal-on-scroll revealed" id="about">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl">
+<div class="lg:col-span-7 space-y-md">
+<h2 class="font-section-heading text-section-heading text-text-primary">The Obsidian Ethos</h2>
+<p class="font-body-main text-body-main text-text-secondary leading-relaxed">
+                        I am Kanav Singla, a developer driven by the pursuit of technical perfection. My approach is rooted in the "Obsidian Precision" philosophy — building systems that are as beautiful in their code structure as they are in their user interface. With a focus on performance, scalability, and user-centric design, I transform complex problems into elegant architectural solutions.
+                    </p>
+</div>
+<div class="lg:col-span-5">
+<div class="grid grid-cols-2 md:grid-cols-2 gap-md">
+<div class="p-lg bg-bg-surface rounded-xl whisper-border" style="--mouse-x: 214px; --mouse-y: 114px;">
+<span class="font-stat-display text-stat-display text-primary block">05+</span>
+<span class="font-label-mono text-label-mono text-text-muted uppercase">Years Experience</span>
+</div>
+<div class="p-lg bg-bg-surface rounded-xl whisper-border" style="--mouse-x: 1px; --mouse-y: 61px;">
+<span class="font-stat-display text-stat-display text-primary block">42+</span>
+<span class="font-label-mono text-label-mono text-text-muted uppercase">Projects Shipped</span>
+</div>
+<div class="p-lg bg-bg-surface rounded-xl whisper-border" style="--mouse-x: -1px; --mouse-y: 64.4000244140625px;">
+<span class="font-stat-display text-stat-display text-primary block">12k</span>
+<span class="font-label-mono text-label-mono text-text-muted uppercase">Git Commits</span>
+</div>
+<div class="p-lg bg-bg-surface rounded-xl whisper-border">
+<span class="font-stat-display text-stat-display text-primary block">99</span>
+<span class="font-label-mono text-label-mono text-text-muted uppercase">Perf Score</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section class="py-4xl max-w-max-width mx-auto px-lg reveal-on-scroll revealed" id="projects">
+<div class="flex items-center justify-between mb-2xl">
+<h2 class="font-section-heading text-section-heading text-text-primary">Selected Works</h2>
+<span class="font-label-mono text-label-mono text-text-muted">PROJECTS / 001 — 003</span>
+</div>
+<div class="space-y-4xl">
+<!-- Project 01 -->
+<article class="group relative bg-bg-surface rounded-[14px] whisper-border overflow-hidden hover:-translate-y-1 transition-all duration-400" style="--mouse-x: 636px; --mouse-y: 116.4000244140625px;">
+<div class="aspect-video w-full bg-surface-container overflow-hidden">
+<img alt="Quantum Ledger Interface" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7eiJtos0UCGJX4RzPwGgstTu9vePVst2a7wHth9DmsG8mQA4YqYIUSH1rHVVLoMkCFAPuz78tdh1zg-kudEWLSagq6KmxKDIZKooL4YWyZ0BnN2UY1FEKG-Ee5aKMEA5wIEFSigSQYpSIZB7Nn0RqatuZ5tpMs-5ktmRX8ouG6SD_NByuxpp7spyITKu0kBsrVDSoePCUWtQjZHN4bYelruVPGUs8MEd0a_Q5EF-enGadrldBVxMVGQ">
+</div>
+<div class="p-xl lg:flex items-start gap-2xl">
+<div class="hidden lg:block lg:w-1/12">
+<span class="font-label-mono text-label-mono text-primary">01.</span>
+</div>
+<div class="lg:w-11/12 space-y-md">
+<h3 class="font-card-title text-card-title text-text-primary group-hover:text-primary transition-colors">Quantum Ledger — Financial Architecture</h3>
+<p class="font-body-main text-body-main text-text-secondary">A real-time financial orchestration engine built for high-frequency data processing. Optimized for sub-50ms latency and architectural clarity.</p>
+<div class="flex flex-wrap gap-xs">
+<span class="px-3 py-1 rounded-md tech-badge font-label-mono text-label-mono text-primary">RUST</span>
+<span class="px-3 py-1 rounded-md tech-badge font-label-mono text-label-mono text-primary">NEXT.JS</span>
+<span class="px-3 py-1 rounded-md tech-badge font-label-mono text-label-mono text-primary">POSTGRES</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Project 02 -->
+<article class="group relative bg-bg-surface rounded-[14px] whisper-border overflow-hidden hover:-translate-y-1 transition-all duration-400" style="--mouse-x: 614px; --mouse-y: 844px;">
+<div class="aspect-video w-full bg-surface-container overflow-hidden">
+<img alt="Vortex CMS Dashboard" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGEfI9yCOv1oVMYNR7o2BroKZdR4O-AuzX0GJ1eGfIijshzyn5Lbh2pM2oPVN5L3wfE0sW0GdQ_nmI_l-mMCTVkKCcsWTDKP8H-cxO_FGpig9KD2MMNOmSGr54Gdg0uJf9tBRtmsV3Bu0YMo69VJ7k_6bkeIOxGmO17lubTGTEH0PfVxdimGz2lEloKDEVRPeS-tQxT6TqeGz3wHkup1lR_ncjA1AN1B7GvMn_LcuP2mjKiTpxGQLMEg">
+</div>
+<div class="p-xl lg:flex items-start gap-2xl">
+<div class="hidden lg:block lg:w-1/12">
+<span class="font-label-mono text-label-mono text-primary">02.</span>
+</div>
+<div class="lg:w-11/12 space-y-md">
+<h3 class="font-card-title text-card-title text-text-primary group-hover:text-primary transition-colors">Vortex CMS — Content Infrastructure</h3>
+<p class="font-body-main text-body-main text-text-secondary">A headless content management system focusing on developer experience and static generation speed. Features a custom block-editor with real-time collaboration.</p>
+<div class="flex flex-wrap gap-xs">
+<span class="px-3 py-1 rounded-md tech-badge font-label-mono text-label-mono text-primary">TYPESCRIPT</span>
+<span class="px-3 py-1 rounded-md tech-badge font-label-mono text-label-mono text-primary">GRAPHQL</span>
+<span class="px-3 py-1 rounded-md tech-badge font-label-mono text-label-mono text-primary">REDIS</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Resume Section -->
+<section class="py-4xl max-w-max-width mx-auto px-lg reveal-on-scroll revealed" id="resume">
+<h2 class="font-section-heading text-section-heading text-text-primary mb-2xl">Professional Trajectory</h2>
+<div class="relative border-l border-whisper ml-4 pl-8 space-y-2xl">
+<!-- Entry 1 -->
+<div class="relative">
+<div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-primary border-4 border-background"></div>
+<div class="space-y-sm">
+<span class="font-label-mono text-label-mono text-text-muted">2022 — PRESENT</span>
+<h3 class="font-card-title text-card-title text-text-primary">Senior Systems Architect</h3>
+<p class="font-body-main text-body-main text-primary">Obsidian Dynamics</p>
+<p class="text-text-secondary max-w-2xl">Leading the development of core infrastructure and establishing design system standards across multi-platform products.</p>
+</div>
+</div>
+<!-- Entry 2 -->
+<div class="relative">
+<div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-surface border-4 border-whisper"></div>
+<div class="space-y-sm">
+<span class="font-label-mono text-label-mono text-text-muted">2020 — 2022</span>
+<h3 class="font-card-title text-card-title text-text-primary">Lead Frontend Engineer</h3>
+<p class="font-body-main text-body-main text-primary">Ethereal Soft</p>
+<p class="text-text-secondary max-w-2xl">Developed a high-performance React-based UI framework used by over 200 internal developers.</p>
+</div>
+</div>
+<!-- Entry 3 -->
+<div class="relative">
+<div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-surface border-4 border-whisper"></div>
+<div class="space-y-sm">
+<span class="font-label-mono text-label-mono text-text-muted">2018 — 2020</span>
+<h3 class="font-card-title text-card-title text-text-primary">Full Stack Developer</h3>
+<p class="font-body-main text-body-main text-primary">Nova Nexus</p>
+<p class="text-text-secondary max-w-2xl">Implemented distributed microservices and migrated legacy monolith architectures to cloud-native solutions.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- GitHub Activity -->
+<section class="py-4xl max-w-max-width mx-auto px-lg reveal-on-scroll revealed">
+<h2 class="font-section-heading text-section-heading text-text-primary mb-2xl">Pulse — GitHub Activity</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Activity Card 1 -->
+<div class="p-lg bg-bg-surface rounded-xl whisper-border space-y-md">
+<div class="flex items-center justify-between">
+<div class="w-24 h-4 rounded bg-surface-variant shimmer"></div>
+<div class="w-12 h-4 rounded bg-surface-variant shimmer"></div>
+</div>
+<div class="space-y-sm">
+<div class="w-full h-3 rounded bg-surface-variant shimmer"></div>
+<div class="w-3/4 h-3 rounded bg-surface-variant shimmer"></div>
+</div>
+<div class="flex gap-xs">
+<div class="w-16 h-5 rounded-md bg-surface-variant shimmer"></div>
+<div class="w-16 h-5 rounded-md bg-surface-variant shimmer"></div>
+</div>
+</div>
+<!-- Activity Card 2 -->
+<div class="p-lg bg-bg-surface rounded-xl whisper-border space-y-md" style="--mouse-x: 186.67498779296875px; --mouse-y: 120.60009765625px;">
+<div class="flex items-center justify-between">
+<div class="w-32 h-4 rounded bg-surface-variant shimmer"></div>
+<div class="w-10 h-4 rounded bg-surface-variant shimmer"></div>
+</div>
+<div class="space-y-sm">
+<div class="w-full h-3 rounded bg-surface-variant shimmer"></div>
+<div class="w-1/2 h-3 rounded bg-surface-variant shimmer"></div>
+</div>
+<div class="flex gap-xs">
+<div class="w-16 h-5 rounded-md bg-surface-variant shimmer"></div>
+</div>
+</div>
+<!-- Activity Card 3 -->
+<div class="p-lg bg-bg-surface rounded-xl whisper-border space-y-md">
+<div class="flex items-center justify-between">
+<div class="w-20 h-4 rounded bg-surface-variant shimmer"></div>
+<div class="w-14 h-4 rounded bg-surface-variant shimmer"></div>
+</div>
+<div class="space-y-sm">
+<div class="w-full h-3 rounded bg-surface-variant shimmer"></div>
+<div class="w-5/6 h-3 rounded bg-surface-variant shimmer"></div>
+</div>
+<div class="flex gap-xs">
+<div class="w-16 h-5 rounded-md bg-surface-variant shimmer"></div>
+<div class="w-16 h-5 rounded-md bg-surface-variant shimmer"></div>
+<div class="w-16 h-5 rounded-md bg-surface-variant shimmer"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section class="py-4xl max-w-max-width mx-auto px-lg reveal-on-scroll revealed">
+<h2 class="font-section-heading text-section-heading text-text-primary mb-2xl">Toolkit</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-xl">
+<!-- Languages -->
+<div class="space-y-md">
+<h3 class="font-label-mono text-label-mono text-text-muted uppercase">Languages</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">TYPESCRIPT</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">RUST</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">GO</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">PYTHON</span>
+</div>
+</div>
+<!-- Frameworks -->
+<div class="space-y-md">
+<h3 class="font-label-mono text-label-mono text-text-muted uppercase">Frameworks</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">NEXT.JS</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">REACT</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">ASTRO</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">TRPC</span>
+</div>
+</div>
+<!-- Infrastructure -->
+<div class="space-y-md">
+<h3 class="font-label-mono text-label-mono text-text-muted uppercase">Infra</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">AWS</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">DOCKER</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">K8S</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">TERRAFORM</span>
+</div>
+</div>
+<!-- Design -->
+<div class="space-y-md">
+<h3 class="font-label-mono text-label-mono text-text-muted uppercase">Design</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">FIGMA</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">SHADCN</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">TAILWIND</span>
+<span class="px-3 py-1 tech-badge rounded-md font-label-mono text-label-mono text-primary">FREMER</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg border-t border-whisper mt-4xl">
+<div class="max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
+<span class="font-label-mono text-label-mono text-text-muted">© 2026 / Kanav Singla</span>
+<div class="flex items-center gap-xl"><a aria-label="Email" class="text-text-muted hover:text-text-primary transition-colors" href="mailto:your-email@example.com"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect height="16" rx="2" width="20" x="2" y="4"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></a><a aria-label="Resume" class="text-text-muted hover:text-text-primary transition-colors" href="/resume.pdf"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><line x1="10" x2="8" y1="9" y2="9"></line></svg></a><a aria-label="GitHub" class="text-text-muted hover:text-text-primary transition-colors" href="#"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg></a><a aria-label="LinkedIn" class="text-text-muted hover:text-text-primary transition-colors" href="#"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a><a aria-label="Twitter" class="text-text-muted hover:text-text-primary transition-colors" href="#"></a></div>
+</div>
+</footer>
+<script>
+        // WebGL Shader Background Logic
+        class WebGLBackground extends HTMLElement {
+            constructor() {
+                super();
+                this.canvas = document.createElement('canvas');
+                this.gl = this.canvas.getContext('webgl');
+                this.startTime = Date.now();
+                this.mouse = { x: 0, y: 0 };
+            }
+
+            connectedCallback() {
+                this.appendChild(this.canvas);
+                const fragmentSource = this.querySelector('script[type="x-shader/x-fragment"]').textContent;
+                const vertexSource = `
+                    attribute vec2 a_position;
+                    varying vec2 v_texCoord;
+                    void main() {
+                        v_texCoord = a_position * 0.5 + 0.5;
+                        gl_Position = vec4(a_position, 0.0, 1.0);
+                    }
+                `;
+
+                this.initGL(vertexSource, fragmentSource);
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+                window.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = window.innerHeight - e.clientY;
+                });
+                this.render();
+            }
+
+            initGL(vsSource, fsSource) {
+                const gl = this.gl;
+                const vs = gl.createShader(gl.VERTEX_SHADER);
+                gl.shaderSource(vs, vsSource);
+                gl.compileShader(vs);
+
+                const fs = gl.createShader(gl.FRAGMENT_SHADER);
+                gl.shaderSource(fs, fsSource);
+                gl.compileShader(fs);
+
+                this.program = gl.createProgram();
+                gl.attachShader(this.program, vs);
+                gl.attachShader(this.program, fs);
+                gl.linkProgram(this.program);
+
+                this.positionBuffer = gl.createBuffer();
+                gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+            }
+
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+                this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+            }
+
+            render() {
+                const gl = this.gl;
+                gl.clearColor(0, 0, 0, 1);
+                gl.clear(gl.COLOR_BUFFER_BIT);
+
+                gl.useProgram(this.program);
+                const posLoc = gl.getAttribLocation(this.program, "a_position");
+                gl.enableVertexAttribArray(posLoc);
+                gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+                const timeLoc = gl.getUniformLocation(this.program, "u_time");
+                gl.uniform1f(timeLoc, (Date.now() - this.startTime) / 1000);
+
+                const resLoc = gl.getUniformLocation(this.program, "u_resolution");
+                gl.uniform2f(resLoc, this.canvas.width, this.canvas.height);
+
+                const mouseLoc = gl.getUniformLocation(this.program, "u_mouse");
+                gl.uniform2f(mouseLoc, this.mouse.x, this.mouse.y);
+
+                gl.drawArrays(gl.TRIANGLES, 0, 6);
+                requestAnimationFrame(() => this.render());
+            }
+        }
+        customElements.define('webgl-shader', WebGLBackground);
+
+        // Scroll Reveal Implementation
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { 
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px' 
+        });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Mouse Glow micro-interactions
+        document.querySelectorAll('.whisper-border').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+</body></html>
