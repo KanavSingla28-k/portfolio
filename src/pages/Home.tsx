@@ -95,7 +95,7 @@ export default function Home() {
       <RevealSection id="about">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-2xl">
           <div className="lg:col-span-7 space-y-md">
-            <h2 className="font-section-heading text-section-heading text-text-primary">The Obsidian Ethos</h2>
+            <h2 className="font-section-heading text-section-heading text-text-primary">My Philosophy</h2>
             <p className="font-body-main text-body-main text-text-secondary leading-relaxed">
               I am {profile.name}, a developer driven by the pursuit of technical perfection. {profile.bio[1]} With a focus on performance, scalability, and user-centric design, I transform complex problems into elegant architectural solutions.
             </p>
@@ -131,7 +131,7 @@ export default function Home() {
         <div className="space-y-4xl">
           {topProjects.map((project, idx) => (
               <HoverCard key={project.id} className="bg-bg-surface rounded-[14px] hover:-translate-y-1 transition-all duration-400">
-                <Link to="/projects" className="block">
+                <Link to={`/projects#${project.id}`} className="block">
                   <div className="w-full">
                     <ProjectImageCarousel 
                       images={project.images || (project.image ? [project.image] : [])} 

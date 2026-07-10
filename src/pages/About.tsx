@@ -43,7 +43,7 @@ export default function About() {
         {/* Visual Separator / Image Integration */}
         <motion.div variants={fadeUpVariants} className="mt-2xl rounded-xl overflow-hidden whisper-border h-64 w-full relative">
           <img 
-            className="w-full h-full object-cover grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500" 
+            className="w-full h-full object-cover md:grayscale md:opacity-60 md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-500" 
             alt={`${profile.name} workstation placeholder`} 
             src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200&h=800"
           />

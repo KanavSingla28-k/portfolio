@@ -9,7 +9,7 @@ const fadeUpVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
 };
 
-function HoverProjectCard({ children, className = '' }: { children: React.ReactNode, className?: string }) {
+function HoverProjectCard({ children, className = '', id }: { children: React.ReactNode, className?: string, id?: string }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -21,8 +21,9 @@ function HoverProjectCard({ children, className = '' }: { children: React.ReactN
 
   return (
     <motion.article 
+      id={id}
       variants={fadeUpVariants}
-      className={`relative group bg-bg-surface border border-whisper rounded-xl p-xl overflow-hidden hover:-translate-y-1 transition-all duration-400 hover:border-border-hover md:p-2xl ${className}`}
+      className={`relative group bg-bg-surface border border-whisper rounded-xl p-xl overflow-hidden hover:-translate-y-1 transition-all duration-400 hover:border-border-hover md:p-2xl scroll-mt-32 ${className}`}
       onMouseMove={handleMouseMove}
       style={{
         '--x': `${mousePos.x}%`,
@@ -56,11 +57,10 @@ export default function Projects() {
             </motion.h1>
           </div>
 
-          {projects.map((project, idx) => (
-              <HoverProjectCard key={project.id}>
+          {projects.map((project) => (
+              <HoverProjectCard key={project.id} id={project.id}>
                 <div className="flex justify-between items-start mb-lg">
                   <div>
-                    <span className="font-label-mono text-label-mono text-primary block mb-xs">PROJECT / {String(idx + 1).padStart(3, '0')}</span>
                     <h2 className="font-card-title text-card-title text-text-primary group-hover:text-primary transition-colors">{project.name}</h2>
                   </div>
                 </div>

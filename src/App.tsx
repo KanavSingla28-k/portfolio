@@ -8,6 +8,7 @@ import Projects from './pages/Projects.tsx';
 import About from './pages/About.tsx';
 import Contact from './pages/Contact.tsx';
 import NotFound from './pages/NotFound.tsx';
+import ScrollToTop from './components/layout/ScrollToTop.tsx';
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />

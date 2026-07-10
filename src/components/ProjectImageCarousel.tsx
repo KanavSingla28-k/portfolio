@@ -55,9 +55,9 @@ export default function ProjectImageCarousel({ images, projectName }: ProjectIma
 
   if (images.length === 1) {
     return (
-      <div className="w-full overflow-hidden bg-surface-container rounded-lg border border-whisper group/carousel relative line-height-0">
+      <div className="w-full aspect-video overflow-hidden bg-surface-container rounded-lg border border-whisper group/carousel relative line-height-0">
         <img
-          className="w-full h-auto block grayscale group-hover:grayscale-0 transition-all duration-700"
+          className="w-full h-full object-contain block md:grayscale md:group-hover:grayscale-0 transition-all duration-700"
           src={images[0]}
           alt={projectName}
         />
@@ -67,20 +67,17 @@ export default function ProjectImageCarousel({ images, projectName }: ProjectIma
 
   return (
     <div className="w-full flex flex-col gap-3">
-      <div className="relative w-full overflow-hidden group/carousel flex items-center justify-center bg-surface-container rounded-lg border border-whisper">
-        {/* Invisible placeholder to dictate the exact height of the image naturally */}
-        <img src={images[imageIndex]} className="w-full h-auto opacity-0 pointer-events-none block" aria-hidden="true" alt="" />
-        
+      <div className="relative w-full aspect-video overflow-hidden group/carousel flex items-center justify-center bg-surface-container rounded-lg border border-whisper">
         <AnimatePresence initial={false} custom={direction}>
           <motion.img
             key={page}
             src={images[imageIndex]}
             alt={`${projectName} screenshot ${imageIndex + 1}`}
             custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
             transition={{
               x: { type: "tween", ease: "easeInOut", duration: 0.3 }
             }}
@@ -88,7 +85,7 @@ export default function ProjectImageCarousel({ images, projectName }: ProjectIma
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={1}
             onDragEnd={handleDragEnd}
-            className="absolute top-0 left-0 w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-700 cursor-grab active:cursor-grabbing"
+            className="absolute top-0 left-0 w-full h-full object-contain md:grayscale md:group-hover:grayscale-0 transition-all duration-700 cursor-grab active:cursor-grabbing"
           />
         </AnimatePresence>
 
