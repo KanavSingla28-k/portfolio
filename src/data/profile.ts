@@ -12,7 +12,7 @@ export const profile = {
   links: {
     github: "https://github.com/KanavSingla28-k",
     linkedin: "https://www.linkedin.com/in/kanav-singla-sde/",
-    resume: "/portfolio-content/portfolio-content/resume.pdf", 
+    resume: "/portfolio-content/resume.pdf", 
   },
   stats: {
     yearsOfCoding: 3,

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useState, type MouseEvent } from 'react';
+import { Button } from '../components/ui/Button';
 
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 32 },
@@ -21,7 +22,7 @@ export default function NotFound() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none z-[100]"></div>
+      <div className="fixed top-0 left-0 w-full h-full bg-[url('/portfolio-content/noise.svg')] opacity-[0.03] pointer-events-none z-[100]"></div>
       <motion.div 
         className="flex-1 flex flex-col items-center justify-center relative px-lg overflow-hidden py-xl" 
         onMouseMove={handleMouseMove}
@@ -45,7 +46,7 @@ export default function NotFound() {
           {/* Large Numeral (Placeholder Image) */}
           <motion.div variants={fadeUpVariants} className="flex-shrink-0">
             <img 
-              src="/portfolio-content/portfolio-content/image404.png" 
+              src="/portfolio-content/image404.png" 
               alt="404 Not Found" 
               className="w-full max-w-[320px] md:max-w-[400px] rounded-xl"
             />
@@ -64,13 +65,10 @@ export default function NotFound() {
 
             {/* Primary Action */}
             <motion.div variants={fadeUpVariants} className="mt-xl md:mt-2xl">
-              <Link 
-                className="inline-flex items-center gap-sm px-xl py-md bg-primary-container text-text-primary font-body-main font-medium rounded-lg transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:translate-y-[-2px] active:scale-95" 
-                to="/"
-              >
+              <Button as={Link} to="/" variant="primary-container" className="px-xl py-md font-body-main font-medium rounded-lg hover:shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:-translate-y-[2px] active:scale-95 transition-all">
                 Back to home
-                <ArrowRight className="w-[18px] h-[18px]" strokeWidth={1.5} />
-              </Link>
+                <ArrowRight className="w-[18px] h-[18px] ml-sm inline-block" strokeWidth={1.5} />
+              </Button>
             </motion.div>
           </div>
         </div>

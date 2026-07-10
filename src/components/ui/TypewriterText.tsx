@@ -47,8 +47,16 @@ export function TypewriterText({
 
   return (
     <Component ref={ref} className={`relative block ${className}`}>
-      <span className="opacity-0 pointer-events-none select-none" aria-hidden="true">{text}</span>
-      <span className="absolute inset-0">
+      {/* Screen reader only complete text */}
+      <span className="sr-only">{text}</span>
+      
+      {/* Invisible text to maintain exact container dimensions for the absolute layer */}
+      <span className="opacity-0 pointer-events-none select-none block" aria-hidden="true">
+        {text}
+      </span>
+      
+      {/* Visual typing effect */}
+      <span className="absolute top-0 left-0 w-full h-full pointer-events-none" aria-hidden="true">
         {displayedText}
         {isTyping && (
           <span className="inline-block w-[0.1em] h-[1em] ml-[2px] -mb-[0.1em] align-baseline bg-primary animate-pulse" />

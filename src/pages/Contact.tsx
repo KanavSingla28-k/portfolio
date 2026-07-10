@@ -1,8 +1,10 @@
-import { useState, type MouseEvent } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMail as Mail, FiLinkedin as Linkedin, FiGithub as Github, FiMapPin as MapPin, FiArrowUpRight as ArrowUpRight } from 'react-icons/fi';
 import { contactMethods } from '../data/contact';
 import { profile } from '../data/profile';
+import { InteractiveHoverCard } from '../components/ui/InteractiveHoverCard';
+import { Button } from '../components/ui/Button';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -11,47 +13,7 @@ const fadeUpVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
 };
 
-function HoverContactCard({ children, className = '', href, target }: { children: React.ReactNode, className?: string, href?: string, target?: string }) {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  
-  const handleMouseMove = (e: MouseEvent<HTMLAnchorElement | HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
-  const content = (
-    <>
-      <div className="absolute inset-0 z-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100" 
-           style={{ background: 'radial-gradient(circle at var(--x) var(--y), rgba(124, 58, 237, 0.15), transparent 50%)' }} />
-      <div className="relative z-10 w-full flex flex-col h-full justify-between gap-xl">
-        {children}
-      </div>
-    </>
-  );
-
-  const wrapperClasses = `group block p-xl rounded-xl bg-bg-surface whisper-border relative overflow-hidden transition-all duration-400 hover:border-border-hover ${className}`;
-  const inlineStyles = {
-    '--x': `${mousePos.x}px`,
-    '--y': `${mousePos.y}px`,
-  } as React.CSSProperties;
-
-  if (href) {
-    return (
-      <a href={href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} className={wrapperClasses} onMouseMove={handleMouseMove} style={inlineStyles}>
-        {content}
-      </a>
-    );
-  }
-
-  return (
-    <div className={wrapperClasses} onMouseMove={handleMouseMove} style={inlineStyles}>
-      {content}
-    </div>
-  );
-}
+// Removed local HoverContactCard in favor of InteractiveHoverCard
 
 const iconMap: Record<string, React.ReactNode> = {
   'Email': <Mail className="w-8 h-8" strokeWidth={1.5} />,
@@ -64,15 +26,30 @@ export default function Contact() {
   const [status, setStatus] = useState<FormStatus>('idle');
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
     
     setStatus('loading');
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-    }, 1500);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xrewnqoo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -81,7 +58,7 @@ export default function Contact() {
   };
 
   return (
-    <motion.main 
+    <motion.section 
       className="pt-[120px] pb-4xl px-lg max-w-max-width mx-auto min-h-screen"
       initial="hidden"
       animate="visible"
@@ -112,26 +89,46 @@ export default function Contact() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-2xl">
         {/* Contact Grid */}
         <motion.div variants={fadeUpVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-lg h-fit">
-          {contactMethods.map((method) => (
-            <HoverContactCard 
-              key={method.name}
-              href={method.url || undefined}
-              target={method.url && !method.url.startsWith('mailto:') ? '_blank' : undefined}
-            >
-              <div className="flex justify-between items-start">
-                <div className="p-md rounded-lg bg-accent-bg border border-border-whisper text-primary">
-                  {iconMap[method.name]}
+          {contactMethods.map((method) => {
+            const innerContent = (
+              <>
+                <div className="flex justify-between items-start">
+                  <div className="p-md rounded-lg bg-accent-bg border border-border-whisper text-primary">
+                    {iconMap[method.name]}
+                  </div>
+                  {method.url && (
+                    <ArrowUpRight className="text-text-muted group-hover:text-primary transition-colors duration-250 transform group-hover:translate-x-1 group-hover:-translate-y-1 w-6 h-6" strokeWidth={1.5} />
+                  )}
                 </div>
-                {method.url && (
-                  <ArrowUpRight className="text-text-muted group-hover:text-primary transition-colors duration-250 transform group-hover:translate-x-1 group-hover:-translate-y-1 w-6 h-6" strokeWidth={1.5} />
-                )}
-              </div>
-              <div>
-                <h3 className="font-card-title text-card-title text-text-primary mb-xs">{method.name}</h3>
-                <p className="font-label-mono text-label-mono text-text-secondary">{method.value}</p>
-              </div>
-            </HoverContactCard>
-          ))}
+                <div>
+                  <h3 className="font-card-title text-card-title text-text-primary mb-xs">{method.name}</h3>
+                  <p className="font-label-mono text-label-mono text-text-secondary">{method.value}</p>
+                </div>
+              </>
+            );
+
+            const commonProps = {
+              className: "block p-xl rounded-xl bg-bg-surface whisper-border hover:border-border-hover transition-all duration-400 h-full flex flex-col justify-between gap-xl",
+              gradientStyle: "radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(124, 58, 237, 0.15), transparent 50%)"
+            };
+
+            return method.url ? (
+              <InteractiveHoverCard
+                key={method.name}
+                as="a"
+                href={method.url}
+                target={!method.url.startsWith('mailto:') ? '_blank' : undefined}
+                rel={!method.url.startsWith('mailto:') ? 'noopener noreferrer' : undefined}
+                {...commonProps}
+              >
+                {innerContent}
+              </InteractiveHoverCard>
+            ) : (
+              <InteractiveHoverCard key={method.name} as="div" {...commonProps}>
+                {innerContent}
+              </InteractiveHoverCard>
+            );
+          })}
         </motion.div>
 
         {/* Contact Form */}
@@ -143,18 +140,24 @@ export default function Contact() {
               </div>
               <h3 className="text-2xl font-bold text-text-primary">Message Sent!</h3>
               <p className="text-text-secondary">Thanks for reaching out. I'll get back to you shortly.</p>
-              <button 
+              <Button 
                 onClick={() => setStatus('idle')}
-                className="mt-4 px-6 py-2 bg-bg-elevated hover:bg-hover border border-whisper rounded-full text-text-primary transition-colors"
+                variant="surface"
+                className="mt-4"
               >
                 Send another
-              </button>
+              </Button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-lg">
               <div>
                 <h3 className="text-xl font-bold text-text-primary mb-2">Send a message</h3>
                 <p className="text-text-secondary text-sm mb-6">Fill out the form below and I'll respond as soon as I can.</p>
+                {status === 'error' && (
+                  <div className="bg-danger/10 border border-danger/20 text-danger p-3 rounded-lg text-sm mb-6">
+                    Failed to send message. Please try again later.
+                  </div>
+                )}
               </div>
               
               <div className="space-y-1">
@@ -200,21 +203,21 @@ export default function Contact() {
                 />
               </div>
 
-              <button 
+              <Button 
                 type="submit" 
                 disabled={status === 'loading'}
-                className="w-full bg-primary hover:bg-primary-hover disabled:opacity-70 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                variant="primary"
               >
                 {status === 'loading' ? (
                   <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                 ) : (
                   'Send Message'
                 )}
-              </button>
+              </Button>
             </form>
           )}
         </motion.div>
       </div>
-    </motion.main>
+    </motion.section>
   );
 }

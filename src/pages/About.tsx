@@ -9,7 +9,7 @@ const fadeUpVariants = {
 
 export default function About() {
   return (
-    <main className="relative z-10 pt-16 pb-4xl max-w-max-width mx-auto px-lg min-h-screen flex flex-col lg:flex-row gap-2xl items-start">
+    <section className="relative z-10 pt-16 pb-4xl max-w-max-width mx-auto px-lg min-h-screen flex flex-col lg:flex-row gap-2xl items-start">
       {/* Left Column: Bio */}
       <motion.section 
         className="lg:w-[60%]"
@@ -60,7 +60,7 @@ export default function About() {
         <div className="bg-surface/50 whisper-border p-lg rounded-xl">
           <h3 className="font-card-title text-card-title text-text-primary mb-md">Technical Foundation</h3>
           
-          <div className="space-y-lg overflow-y-auto pr-sm" style={{ maxHeight: '600px', scrollbarWidth: 'thin', scrollbarColor: 'rgba(124, 58, 237, 0.3) transparent' }}>
+          <div className="space-y-lg overflow-y-auto pr-sm max-h-[600px] custom-scrollbar">
             {skills.map((group) => (
               <div key={group.category}>
                 <h4 className="font-label-mono text-label-mono text-text-muted mb-sm uppercase tracking-wider">{group.category}</h4>
@@ -79,6 +79,6 @@ export default function About() {
           </div>
         </div>
       </motion.aside>
-    </main>
+    </section>
   );
 }

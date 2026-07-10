@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence, type PanInfo } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProjectImageCarouselProps {
@@ -35,7 +35,19 @@ export default function ProjectImageCarousel({ images, projectName }: ProjectIma
     setPage([page + newDirection, newDirection]);
   };
 
-  const handleDragEnd = (_e: any, { offset, velocity }: any) => {
+  useEffect(() => {
+    if (!images || images.length <= 1) return;
+    const nextIdx = (imageIndex + 1) % images.length;
+    const prevIdx = (imageIndex - 1 + images.length) % images.length;
+    
+    const imgNext = new Image();
+    imgNext.src = images[nextIdx];
+    
+    const imgPrev = new Image();
+    imgPrev.src = images[prevIdx];
+  }, [imageIndex, images]);
+
+  const handleDragEnd = (_e: MouseEvent | TouchEvent | PointerEvent, { offset, velocity }: PanInfo) => {
     const swipe = swipePower(offset.x, velocity.x);
 
     if (swipe < -swipeConfidenceThreshold) {
@@ -92,20 +104,21 @@ export default function ProjectImageCarousel({ images, projectName }: ProjectIma
 
         {/* Navigation Arrows */}
         <button
-        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-white opacity-0 group-hover/carousel:opacity-100 hover:bg-black/80 transition-all z-10"
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-white opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary hover:bg-black/80 transition-all z-10"
         onClick={(e) => { e.preventDefault(); e.stopPropagation(); paginate(-1); }}
         aria-label="Previous image"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
       <button
-        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-white opacity-0 group-hover/carousel:opacity-100 hover:bg-black/80 transition-all z-10"
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-white opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary hover:bg-black/80 transition-all z-10"
         onClick={(e) => { e.preventDefault(); e.stopPropagation(); paginate(1); }}
         aria-label="Next image"
       >
         <ChevronRight className="w-5 h-5" />
         </button>
       </div>
+
 
       {/* Line Indicators */}
       <div className="w-full flex items-center gap-2">

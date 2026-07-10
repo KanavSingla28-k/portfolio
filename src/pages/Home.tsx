@@ -1,9 +1,11 @@
-import { useState, type MouseEvent } from 'react';
+
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { profile } from '../data/profile';
 import { RevealGroup, RevealItem, RevealFx } from '../components/ui/RevealFx';
 import { TypewriterText } from '../components/ui/TypewriterText';
+import { Button } from '../components/ui/Button';
+import { InteractiveHoverCard } from '../components/ui/InteractiveHoverCard';
 
 
 import { skills } from '../data/skills';
@@ -31,7 +33,16 @@ function RevealSection({ children, id, className = '' }: { children: React.React
   );
 }
 
-function TimelineBox({ item, isFirst }: { item: any, isFirst: boolean }) {
+interface TimelineItemType {
+  id: string;
+  title: string;
+  organization: string;
+  period: string;
+  description?: string;
+  highlights?: string[];
+}
+
+function TimelineBox({ item, isFirst }: { item: TimelineItemType, isFirst: boolean }) {
   const speed = 0.015;
   const baseDelay = 0.5; // wait for the RevealItem box animation
   
@@ -61,60 +72,10 @@ function TimelineBox({ item, isFirst }: { item: any, isFirst: boolean }) {
   );
 }
 
-function ActivityBox({ activity }: { activity: any }) {
-  const speed = 0.015;
-  const baseDelay = 0.5; // wait for the RevealFx box animation
-  
-  const repoDelay = baseDelay;
-  const msgDelay = repoDelay + (activity.repo?.length || 0) * speed;
-  const dateDelay = msgDelay + (activity.message?.length || 0) * speed;
-
-  return (
-    <RevealFx className="w-full">
-      <div className="p-lg bg-bg-surface border border-whisper rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:border-border-hover transition-colors min-h-[88px]">
-        <div className="flex items-center gap-md">
-          <div className="p-3 bg-accent-bg rounded-lg text-primary shrink-0">
-            {activity.type === 'Push' ? <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg> : activity.type === 'Merge' ? <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" /></svg> : <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>}
-          </div>
-          <div className="min-w-0">
-            <TypewriterText as="h3" className="block font-medium text-text-primary group-hover:text-primary transition-colors" text={activity.repo} delay={repoDelay} speed={speed} />
-            <TypewriterText as="p" className="block text-sm text-text-secondary" text={activity.message} delay={msgDelay} speed={speed} />
-          </div>
-        </div>
-        <TypewriterText as="span" className="block font-label-mono text-xs text-text-muted shrink-0 sm:text-right" text={activity.date} delay={dateDelay} speed={speed} />
-      </div>
-    </RevealFx>
-  );
-}
 
 
-function HoverCard({ children, className = '' }: { children: React.ReactNode, className?: string }) {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
 
-  return (
-    <div 
-      className={`relative whisper-border overflow-hidden group ${className}`}
-      onMouseMove={handleMouseMove}
-      style={{
-        '--mouse-x': `${mousePos.x}px`,
-        '--mouse-y': `${mousePos.y}px`,
-      } as React.CSSProperties}
-    >
-      <div className="absolute inset-0 z-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100" 
-           style={{ background: 'radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(124, 58, 237, 0.08), transparent 40%)' }} />
-      <div className="relative z-10 h-full w-full">
-        {children}
-      </div>
-    </div>
-  );
-}
+// Removed local HoverCard in favor of InteractiveHoverCard
 
 export default function Home() {
   const topProjects = projects.filter(p => p.featured).slice(0, 4);
@@ -150,12 +111,12 @@ export default function Home() {
           
           <RevealItem>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-md pt-md">
-              <Link className="w-full sm:w-auto px-xl py-4 border border-whisper bg-bg-surface rounded-3xl font-medium hover:border-hover hover:bg-bg-elevated transition-all flex items-center justify-center gap-2 text-text-primary" to="/about">
+              <Button variant="surface" as={Link} to="/about">
                 About - {profile.name}
-              </Link>
-              <a className="w-full sm:w-auto px-xl py-4 border border-whisper bg-bg-surface rounded-3xl font-medium hover:border-hover hover:bg-bg-elevated transition-all flex items-center justify-center gap-2 text-text-primary" href={profile.links.resume} target="_blank" rel="noopener noreferrer">
+              </Button>
+              <Button variant="surface" as="a" href={profile.links.resume} target="_blank" rel="noopener noreferrer">
                 Resume
-              </a>
+              </Button>
             </div>
           </RevealItem>
         </RevealGroup>
@@ -170,23 +131,23 @@ export default function Home() {
             </p>
           </div>
           <div className="lg:col-span-5">
-            <div className="grid grid-cols-2 md:grid-cols-2 gap-md">
-              <HoverCard className="p-lg bg-bg-surface rounded-xl">
+            <div className="grid grid-cols-2 gap-md">
+              <InteractiveHoverCard className="p-lg whisper-border bg-bg-surface rounded-xl">
                 <span className="font-stat-display text-stat-display text-primary block">0{profile.stats.yearsOfCoding}+</span>
                 <span className="font-label-mono text-label-mono text-text-muted uppercase">Years Experience</span>
-              </HoverCard>
-              <HoverCard className="p-lg bg-bg-surface rounded-xl">
+              </InteractiveHoverCard>
+              <InteractiveHoverCard className="p-lg whisper-border bg-bg-surface rounded-xl">
                 <span className="font-stat-display text-stat-display text-primary block">{profile.stats.projectsBuilt}+</span>
                 <span className="font-label-mono text-label-mono text-text-muted uppercase">Projects Shipped</span>
-              </HoverCard>
-              <HoverCard className="p-lg bg-bg-surface rounded-xl">
+              </InteractiveHoverCard>
+              <InteractiveHoverCard className="p-lg whisper-border bg-bg-surface rounded-xl">
                 <span className="font-stat-display text-stat-display text-primary block">{profile.stats.technologiesUsed}+</span>
                 <span className="font-label-mono text-label-mono text-text-muted uppercase">Tech Stack</span>
-              </HoverCard>
-              <HoverCard className="p-lg bg-bg-surface rounded-xl">
+              </InteractiveHoverCard>
+              <InteractiveHoverCard className="p-lg whisper-border bg-bg-surface rounded-xl">
                 <span className="font-stat-display text-stat-display text-primary block">{profile.stats.keyMetric.value}</span>
                 <span className="font-label-mono text-label-mono text-text-muted uppercase">{profile.stats.keyMetric.label}</span>
-              </HoverCard>
+              </InteractiveHoverCard>
             </div>
           </div>
         </div>
@@ -199,53 +160,35 @@ export default function Home() {
         </div>
         <div className="space-y-4xl">
           {topProjects.map((project, idx) => (
-              <HoverCard key={project.id} className="bg-bg-surface rounded-[14px] hover:-translate-y-1 transition-all duration-400">
-                <Link to={`/projects#${project.id}`} className="block">
-                  <div className="w-full">
-                    <ProjectImageCarousel 
-                      images={project.images || (project.image ? [project.image] : [])} 
-                      projectName={project.name} 
-                    />
+              <InteractiveHoverCard key={project.id} className="bg-bg-surface whisper-border rounded-[14px] hover:-translate-y-1 transition-all duration-400 flex flex-col">
+                <div className="w-full">
+                  <ProjectImageCarousel 
+                    images={project.images || (project.image ? [project.image] : [])} 
+                    projectName={project.name} 
+                  />
+                </div>
+                <Link to={`/projects#${project.id}`} className="block p-xl lg:flex items-start gap-2xl group/link hover:bg-white/5 transition-colors flex-1 rounded-b-[14px]">
+                  <div className="hidden lg:block lg:w-1/12">
+                    <span className="font-label-mono text-label-mono text-primary">0{idx + 1}.</span>
                   </div>
-                  <div className="p-xl lg:flex items-start gap-2xl">
-                    <div className="hidden lg:block lg:w-1/12">
-                      <span className="font-label-mono text-label-mono text-primary">0{idx + 1}.</span>
-                    </div>
-                    <div className="lg:w-11/12 space-y-md">
-                      <h3 className="font-card-title text-card-title text-text-primary group-hover:text-primary transition-colors">{project.name}</h3>
-                      <p className="font-body-main text-body-main text-text-secondary">{project.description}</p>
-                      <div className="flex flex-wrap gap-xs">
-                        {project.techStack.slice(0, 4).map(topic => (
-                          <span key={topic} className="px-3 py-1 bg-accent-bg border border-[rgba(124,58,237,0.1)] rounded-md font-label-mono text-label-mono text-primary uppercase">
-                            {topic}
-                          </span>
-                        ))}
-                      </div>
+                  <div className="lg:w-11/12 space-y-md">
+                    <h3 className="font-card-title text-card-title text-text-primary group-hover/link:text-primary transition-colors">{project.name}</h3>
+                    <p className="font-body-main text-body-main text-text-secondary">{project.description}</p>
+                    <div className="flex flex-wrap gap-xs">
+                      {project.techStack.slice(0, 4).map(topic => (
+                        <span key={topic} className="px-3 py-1 bg-accent-bg border border-[rgba(124,58,237,0.1)] rounded-md font-label-mono text-label-mono text-primary uppercase">
+                          {topic}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </Link>
-              </HoverCard>
+              </InteractiveHoverCard>
             ))}
         </div>
       </RevealSection>
 
-      <section id="activity" className="py-4xl max-w-max-width mx-auto px-lg">
-        <RevealFx>
-          <div className="flex items-center justify-between mb-2xl">
-            <h2 className="font-section-heading text-section-heading text-text-primary">Recent Activity</h2>
-            <span className="font-label-mono text-label-mono text-text-muted">ACTIVITY / GITHUB</span>
-          </div>
-        </RevealFx>
-        <div className="space-y-md">
-          {[
-            { id: 1, type: 'Push', repo: 'portfolio', message: 'Update contact form and homepage routing', date: 'Just now' },
-            { id: 2, type: 'Merge', repo: 'PDFTalk', message: 'Merge pull request #42 from feature/ui-refresh', date: '2 days ago' },
-            { id: 3, type: 'Issue', repo: 'Resumint', message: 'Closed issue #15: Fix PDF generation bug', date: '1 week ago' }
-          ].map((activity) => (
-            <ActivityBox key={activity.id} activity={activity} />
-          ))}
-        </div>
-      </section>
+
 
       <section id="resume" className="py-4xl max-w-max-width mx-auto px-lg">
         <RevealFx>
