@@ -17,7 +17,7 @@ export default function About() {
         animate="visible"
         variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
       >
-        <motion.h1 variants={fadeUpVariants} className="font-hero-heading text-hero-heading mb-xl">
+        <motion.h1 variants={fadeUpVariants} className="font-hero-heading-mobile text-hero-heading-mobile md:font-hero-heading md:text-hero-heading mb-xl whitespace-nowrap">
           {profile.name}
         </motion.h1>
         
@@ -36,7 +36,7 @@ export default function About() {
             </motion.p>
           ))}
           <motion.p variants={fadeUpVariants}>
-            Every line of code I write is a commitment to longevity and craftsmanship. Whether I'm orchestrating complex cloud deployments or refining a micro-interaction, I treat every project as a proof of craft—a testament to the belief that software should be as beautiful internally as it is externally.
+            Shipping features, fixing bugs, and occasionally arguing with TypeScript. Always learning. Always building. Always looking for a better way to solve the problem.
           </motion.p>
         </div>
 
