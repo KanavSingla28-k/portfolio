@@ -17,4 +17,11 @@
   .clip-path-reveal-hover:hover .clip-path-reveal {
     clip-path: circle(0% at 50% 50%);
   }
+
+  .bg-dot-pattern {
+    background-image: radial-gradient(circle, rgba(128, 128, 128, 0.2) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse at top center, black, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at top center, black, transparent 80%);
+  }
 }

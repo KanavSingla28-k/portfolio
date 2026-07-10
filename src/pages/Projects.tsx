@@ -3,10 +3,11 @@ import { motion } from 'framer-motion';
 import { Rocket, Code } from 'lucide-react';
 import { projects } from '../data/projects';
 import ProjectImageCarousel from '../components/ProjectImageCarousel';
+import { RevealGroup, RevealItem } from '../components/ui/RevealFx';
 
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] } }
 };
 
 function HoverProjectCard({ children, className = '', id }: { children: React.ReactNode, className?: string, id?: string }) {
@@ -41,20 +42,18 @@ function HoverProjectCard({ children, className = '', id }: { children: React.Re
 
 export default function Projects() {
   return (
-    <motion.div 
+    <RevealGroup 
       className="max-w-max-width mx-auto px-lg pt-16 pb-4xl"
-      initial="hidden"
-      animate="visible"
-      variants={{
-        visible: { transition: { staggerChildren: 0.1 } }
-      }}
+      staggerDelay={0.1}
     >
       <div className="flex flex-col gap-xl lg:gap-2xl relative">
         <div className="space-y-xl w-full">
           <div className="mb-2xl flex flex-col items-center">
-            <motion.h1 variants={fadeUpVariants} className="font-hero-heading text-center text-hero-heading-mobile md:text-hero-heading text-text-primary mb-md">
-              Projects
-            </motion.h1>
+            <RevealItem>
+              <h1 className="font-hero-heading text-center text-hero-heading-mobile md:text-hero-heading text-text-primary mb-md">
+                Projects
+              </h1>
+            </RevealItem>
           </div>
 
           {projects.map((project) => (
@@ -102,6 +101,6 @@ export default function Projects() {
             ))}
         </div>
       </div>
-    </motion.div>
+    </RevealGroup>
   );
 }
