@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { profile } from '../data/profile';
 import { skills } from '../data/skills';
-
+import { resumeData } from '../data/resume';
+import { TimelineBox } from '../components/TimelineBox';
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 32 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
@@ -25,7 +26,7 @@ export default function About() {
           Full-Stack Developer | ML Engineer
         </motion.p>
         
-        <div className="space-y-md font-body-main text-body-main text-text-secondary max-w-prose">
+        <div className="space-y-md font-body-main text-body-main text-text-secondary max-w-prose mb-2xl">
           {profile.bio.map((paragraph, idx) => (
             <motion.p key={idx} variants={fadeUpVariants}>
               {idx === 0 ? (
@@ -40,13 +41,16 @@ export default function About() {
           </motion.p>
         </div>
 
-        {/* Visual Separator / Image Integration */}
-        <motion.div variants={fadeUpVariants} className="mt-2xl rounded-xl overflow-hidden whisper-border h-64 w-full relative">
-          <img 
-            className="w-full h-full object-cover md:grayscale md:opacity-60 md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-500" 
-            alt={`${profile.name} workstation placeholder`} 
-            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200&h=800"
-          />
+        <motion.div variants={fadeUpVariants} className="mt-xl">
+
+          <div className="relative border-l border-whisper ml-4 pl-8 space-y-xl">
+            {resumeData.experience.map((exp, idx) => (
+              <TimelineBox key={exp.id} item={exp} isFirst={idx === 0} />
+            ))}
+            {resumeData.education.map((edu, idx) => (
+              <TimelineBox key={edu.id} item={edu} isFirst={resumeData.experience.length === 0 && idx === 0} />
+            ))}
+          </div>
         </motion.div>
       </motion.section>
 
@@ -78,6 +82,24 @@ export default function About() {
             ))}
           </div>
         </div>
+
+        {/* Visual Separator / Image Integration */}
+        <motion.div variants={fadeUpVariants} className="mt-xl rounded-xl overflow-hidden whisper-border h-64 w-full relative">
+          <img 
+            className="w-full h-full object-cover md:grayscale md:opacity-60 md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-500" 
+            alt={`${profile.name} workstation placeholder`} 
+            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200&h=800"
+          />
+        </motion.div>
+
+        {/* User Icon */}
+        <motion.div variants={fadeUpVariants} className="mt-xl rounded-full overflow-hidden whisper-border aspect-square w-[75%] max-w-[320px] relative mx-auto bg-surface/50">
+          <img 
+            className="w-full h-full object-cover md:grayscale md:opacity-80 md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-500" 
+            alt={`${profile.name} icon`} 
+            src="/icon.png"
+          />
+        </motion.div>
       </motion.aside>
     </section>
   );
