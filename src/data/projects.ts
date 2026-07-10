@@ -8,13 +8,13 @@ export const projects: Project[] = [
     techStack: ["FastAPI", "PostgreSQL", "pgvector", "Redis", "RQ", "OpenAI", "Next.js 16", "TypeScript", "AWS S3", "Docker"],
     githubUrl: "https://github.com/KanavSingla28-k/PDFTalk",
     demoUrl: "https://pdftalk.kanavsingla.fyi/",
-    image: "/project-img/pdftalk/pdftalk.png",
+    image: "/portfolio-content/portfolio-content/pdftalk/pdftalk.png",
     images: [
-      "/project-img/pdftalk/pdftalk.png",
-      "/project-img/pdftalk/pdftalk-1.png",
-      "/project-img/pdftalk/pdftalk-2.png",
-      "/project-img/pdftalk/pdftalk-3.png",
-      "/project-img/pdftalk/pdftalk-4.png"
+      "/portfolio-content/portfolio-content/pdftalk/pdftalk.png",
+      "/portfolio-content/portfolio-content/pdftalk/pdftalk-1.png",
+      "/portfolio-content/portfolio-content/pdftalk/pdftalk-2.png",
+      "/portfolio-content/portfolio-content/pdftalk/pdftalk-3.png",
+      "/portfolio-content/portfolio-content/pdftalk/pdftalk-4.png"
     ],
     featured: true,
     order: 1,
@@ -26,13 +26,13 @@ export const projects: Project[] = [
     techStack: ["Next.js 16", "TypeScript", "Hono", "Prisma", "PostgreSQL", "BullMQ", "Redis", "DeepSeek LLM", "Better-Auth", "Zustand", "Render", "Vercel"],
     githubUrl: "https://github.com/DushyantBhardwaj2/resumeDatabase",
     demoUrl: "https://resume-database.vercel.app/",
-    image: "/project-img/resumint/resumint.png",
+    image: "/portfolio-content/portfolio-content/resumint/resumint.png",
     images: [
-      "/project-img/resumint/resumint.png",
-      "/project-img/resumint/resumint-1.png",
-      "/project-img/resumint/resumint-2.png",
-      "/project-img/resumint/resumint-3.jpeg",
-      "/project-img/resumint/resumint-4.jpeg"
+      "/portfolio-content/portfolio-content/resumint/resumint.png",
+      "/portfolio-content/portfolio-content/resumint/resumint-1.png",
+      "/portfolio-content/portfolio-content/resumint/resumint-2.png",
+      "/portfolio-content/portfolio-content/resumint/resumint-3.jpeg",
+      "/portfolio-content/portfolio-content/resumint/resumint-4.jpeg"
     ],
     featured: true,
     order: 2,
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     techStack: ["Python", "LightGBM", "XGBoost", "Scikit-Learn", "Pandas", "NumPy"],
     githubUrl: "https://github.com/UtkarshDubeyGIT/Fuzzy-Monotonic-LightGBM-for-Explainable-Credit-Default-Prediction",
     demoUrl: "",
-    image: "/project-img/fuzzy.png",
+    image: "/portfolio-content/portfolio-content/fuzzy.png",
     featured: true,
     order: 3,
   },
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     techStack: ["Python", "Scikit-Learn", "Pandas", "NumPy", "Matplotlib"],
     githubUrl: "https://github.com/SavageCat05/AI-project-",
     demoUrl: "",
-    image: "/project-img/fsro.png",
+    image: "/portfolio-content/portfolio-content/fsro.png",
     featured: true,
     order: 4,
   }

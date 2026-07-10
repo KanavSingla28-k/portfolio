@@ -45,7 +45,7 @@ export default function NotFound() {
           {/* Large Numeral (Placeholder Image) */}
           <motion.div variants={fadeUpVariants} className="flex-shrink-0">
             <img 
-              src="/image404.png" 
+              src="/portfolio-content/portfolio-content/image404.png" 
               alt="404 Not Found" 
               className="w-full max-w-[320px] md:max-w-[400px] rounded-xl"
             />

@@ -3,13 +3,14 @@ import { motion } from 'framer-motion';
 import { Rocket, Code } from 'lucide-react';
 import { projects } from '../data/projects';
 import ProjectImageCarousel from '../components/ProjectImageCarousel';
+import { RevealGroup, RevealItem } from '../components/ui/RevealFx';
 
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] } }
 };
 
-function HoverProjectCard({ children, className = '' }: { children: React.ReactNode, className?: string }) {
+function HoverProjectCard({ children, className = '', id }: { children: React.ReactNode, className?: string, id?: string }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -21,8 +22,9 @@ function HoverProjectCard({ children, className = '' }: { children: React.ReactN
 
   return (
     <motion.article 
+      id={id}
       variants={fadeUpVariants}
-      className={`relative group bg-bg-surface border border-whisper rounded-xl p-xl overflow-hidden hover:-translate-y-1 transition-all duration-400 hover:border-border-hover md:p-2xl ${className}`}
+      className={`relative group bg-bg-surface border border-whisper rounded-xl p-xl overflow-hidden hover:-translate-y-1 transition-all duration-400 hover:border-border-hover md:p-2xl scroll-mt-32 ${className}`}
       onMouseMove={handleMouseMove}
       style={{
         '--x': `${mousePos.x}%`,
@@ -40,27 +42,24 @@ function HoverProjectCard({ children, className = '' }: { children: React.ReactN
 
 export default function Projects() {
   return (
-    <motion.div 
+    <RevealGroup 
       className="max-w-max-width mx-auto px-lg pt-16 pb-4xl"
-      initial="hidden"
-      animate="visible"
-      variants={{
-        visible: { transition: { staggerChildren: 0.1 } }
-      }}
+      staggerDelay={0.1}
     >
       <div className="flex flex-col gap-xl lg:gap-2xl relative">
         <div className="space-y-xl w-full">
           <div className="mb-2xl flex flex-col items-center">
-            <motion.h1 variants={fadeUpVariants} className="font-hero-heading text-center text-hero-heading-mobile md:text-hero-heading text-text-primary mb-md">
-              Projects
-            </motion.h1>
+            <RevealItem>
+              <h1 className="font-hero-heading text-center text-hero-heading-mobile md:text-hero-heading text-text-primary mb-md">
+                Projects
+              </h1>
+            </RevealItem>
           </div>
 
-          {projects.map((project, idx) => (
-              <HoverProjectCard key={project.id}>
+          {projects.map((project) => (
+              <HoverProjectCard key={project.id} id={project.id}>
                 <div className="flex justify-between items-start mb-lg">
                   <div>
-                    <span className="font-label-mono text-label-mono text-primary block mb-xs">PROJECT / {String(idx + 1).padStart(3, '0')}</span>
                     <h2 className="font-card-title text-card-title text-text-primary group-hover:text-primary transition-colors">{project.name}</h2>
                   </div>
                 </div>
@@ -102,6 +101,6 @@ export default function Projects() {
             ))}
         </div>
       </div>
-    </motion.div>
+    </RevealGroup>
   );
 }

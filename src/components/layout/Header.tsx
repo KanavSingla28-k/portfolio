@@ -8,7 +8,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md border-b border-whisper bg-overlay">
       <nav className="max-w-max-width mx-auto flex items-center px-lg py-md">
         <div className="flex-1 flex justify-start">
-          <Link className="flex items-center" to="/">
+          <Link className="flex items-center" to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <img src="/icon.png" alt="Logo" className="w-8 h-auto" />
           </Link>
         </div>

@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
         <span className="font-label-mono text-label-mono text-text-muted">© {new Date().getFullYear()} / {profile.name}</span>
         <div className="flex items-center gap-xl">
-          <Link to="/" className="font-label-mono text-label-mono text-text-muted hover:text-text-primary transition-colors">Home</Link>
+          <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="font-label-mono text-label-mono text-text-muted hover:text-text-primary transition-colors">Home</Link>
           <Link to="/contact" className="font-label-mono text-label-mono text-text-muted hover:text-text-primary transition-colors">Contact</Link>
           <a aria-label="Email" className="text-text-muted hover:text-text-primary transition-colors" href={`mailto:${profile.email}`}>
             <Mail className="w-5 h-5" strokeWidth={1.5} />
