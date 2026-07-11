@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
 
 import { lazy } from 'react';
 import Layout from './components/layout/Layout.tsx';
@@ -29,6 +30,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
+          <Analytics />
         </BrowserRouter>
       </QueryClientProvider>
     </HelmetProvider>
