@@ -33,7 +33,14 @@ export default function Contact() {
     setStatus('loading');
     
     try {
-      const response = await fetch('https://formspree.io/f/xrewnqoo', {
+      const formspreeEndpoint = import.meta.env.FORMSPREE_ENDPOINT;
+      if (!formspreeEndpoint) {
+        console.error('Formspree endpoint is not configured.');
+        setStatus('error');
+        return;
+      }
+
+      const response = await fetch(formspreeEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
