@@ -71,9 +71,9 @@ Follow these steps to run the project locally.
    ```
 
 3. **Set up Environment Variables:**
-   Create a `.env.local` file in the root directory and add your GitHub Personal Access Token to fetch live GitHub data:
+   Create a `.env.local` file in the root directory and add your Formspree endpoint URL to enable the contact form:
    ```env
-   VITE_GITHUB_TOKEN=your_personal_access_token_here
+   VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/your_form_id
    ```
 
 4. **Start the development server:**
@@ -102,7 +102,7 @@ portfolio/
 │   ├── types/            # TypeScript interface definitions
 │   ├── App.tsx           # Application routing and providers
 │   └── main.tsx          # Application entry point
-├── .env.local            # Environment variables (GitHub Token, etc.)
+├── .env.local            # Environment variables (Formspree Endpoint)
 ├── tailwind.config.ts    # Tailwind CSS configuration
 ├── vite.config.ts        # Vite configuration
 └── package.json          # Dependencies and scripts
